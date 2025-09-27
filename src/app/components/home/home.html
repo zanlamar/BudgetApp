@@ -1,14 +1,33 @@
-<div class="container">
-    <div class="column step1">
-        <h2>Products</h2>
-        <p>Services available</p>
+<div class="container-fluid px-3 d-flex gap-3 mt-2">
+    <div class="column step1 flex-fill">
+
+        <h2>Our services</h2>
+
+        <app-service-card
+            service = "SEO"
+            serviceDescription= "Complete profesional SEO audit."
+            price = "300">
+        </app-service-card>
+
+        <app-service-card
+            service = "Ads"
+            serviceDescription = "Tailored ads campaign."
+            price = "400">
+        </app-service-card>
+
+        <app-service-card
+            service = "Web"
+            serviceDescription = "Responsive website development."
+            price = "500">
+        </app-service-card>
+
     </div>
+
     <div class="column step2">
-        <h2>Summary</h2>
-        <p>Estimated budget</p>
+        <h2>Your order</h2>
     </div>
+
     <div class="column step3">
         <h2>Get in touch</h2>
-        <p>Ready to order? Contact for details</p>
     </div>
 </div>
