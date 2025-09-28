@@ -1,16 +1,43 @@
-<div class = "container-panel">
+<div class = "container row">
     <div class="col-lg-8 d-flex align-items-center gap-4">
           <i class="bi bi-info-circle-fill"></i>
-          <p class="mb-0">Number of pages</p>
+          <p class="mb-0"> {{ servicePageLabel }}</p>
 
-        <div class="input-group" style="width: 110px;">
-          <button type="button" class="btn btn-outline-primary quantity-left-minus" data-type="minus">-
+        <div class="input-group" style="width: 130px;">
+          <button type="button" class="btn btn-outline-primary quantity-left-minus"
+                (click)="decreasePageQuantity()">
               <i class="bi bi-dash"></i>
           </button>
           
-          <input type="text" id="quantity" name="quantity" class="form-control text-center" value="1" min="1" max="100">
+          <input type="number"
+            class="form-control text-center"
+            [value]="pageQuantity()" min="1" max="99"
+            readonly>
           
-          <button type="button" class="btn btn-outline-primary quantity-right-plus" data-type="plus">+
+          <button type="button" class="btn btn-outline-primary quantity-right-plus"
+                (click)="increasePageQuantity()">
+              <i class="bi bi-plus"></i>
+          </button>
+        </div>
+    </div>
+
+    <div class="col-lg-8 d-flex align-items-center gap-4">
+          <i class="bi bi-info-circle-fill"></i>
+          <p class="mb-0"> {{ serviceLanguageLabel }}</p>
+
+        <div class="input-group" style="width: 130px;">
+          <button type="button" class="btn btn-outline-primary quantity-left-minus"
+                (click)="decreaseLanguageQuantity()">
+              <i class="bi bi-dash"></i>
+          </button>
+          
+          <input type="number"
+            class="form-control text-center"
+            [value]="languageQuantity()" min="1" max="99"
+            readonly>
+          
+          <button type="button" class="btn btn-outline-primary quantity-right-plus"
+                (click)="increaseLanguageQuantity()">
               <i class="bi bi-plus"></i>
           </button>
         </div>

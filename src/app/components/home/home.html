@@ -5,20 +5,26 @@
 
         <app-service-card
             service = "SEO"
-            serviceDescription= "Complete profesional SEO audit."
-            price = "300">
+            serviceDescription = "Complete profesional SEO audit."
+            price = "300"
+            [isSelected] = "seoSelected"
+            (checkboxChanged)="onSeoSelectionChange($event)">
         </app-service-card>
 
         <app-service-card
             service = "Ads"
             serviceDescription = "Tailored ads campaign."
-            price = "400">
+            price = "400"
+            [isSelected] = "adsSelected"
+            (checkboxChanged)="onAdsSelectionChange($event)">
         </app-service-card>
 
         <app-service-card
             service = "Web"
             serviceDescription = "Responsive website development."
-            price = "500">
+            price = "500"
+            [isSelected] = "webSelected"
+            (checkboxChanged)="onWebSelectionChange($event)">
         </app-service-card>
 
     </div>
