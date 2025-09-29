@@ -10,6 +10,9 @@ import { Panel } from '../panel/panel';
 })
 export class ServiceCard {
 
+  currentPages: number = 1;
+  currentLanguages: number = 1;
+
   @Input() service: string = '';
   @Input() serviceDescription: string = '';
   @Input() price: string = '';
@@ -19,6 +22,8 @@ export class ServiceCard {
     isSelected: boolean;
     price: number;
     service: string;
+    pagesNumber: number;
+    languagesNumber: number;
   }>();
 
   onCheckboxChange(event: any) {
@@ -27,7 +32,33 @@ export class ServiceCard {
     this.checkboxChanged.emit({
       isSelected: isSelected,
       price: parseFloat(this.price),
-      service: this.service
+      service: this.service,
+      pagesNumber: this.currentPages,
+      languagesNumber: this.currentLanguages,
     });
+  }
+
+  onPagesInputChange(pagesNumber: number) {
+    this.currentPages = pagesNumber;
+    if (this.isSelected) {
+      this.emitChanges(true);
+    }
+  }
+
+  onLanguagesInputChange(languagesNumber: number) {
+    this.currentLanguages = languagesNumber;
+    if (this.isSelected) {
+      this.emitChanges(true);
+    }
+  }
+
+  private emitChanges(isSelected: boolean) {
+    this.checkboxChanged.emit({
+      isSelected: isSelected,
+      price: parseFloat(this.price),
+      service: this.service,
+      pagesNumber: this.currentPages,
+      languagesNumber: this.currentLanguages,
+    })
   }
 }

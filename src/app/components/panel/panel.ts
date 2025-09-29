@@ -39,7 +39,7 @@ export class Panel implements OnInit {
     if (this.pageQuantity() < 99) {
       this.pageQuantity.update(value => value + 1);
       this.finalPageQuantity.emit(this.pageQuantity());
-    }
+    } 
   }
 
     decreaseLanguageQuantity() {
