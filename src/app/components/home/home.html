@@ -7,7 +7,7 @@
             service = "SEO"
             serviceDescription = "Complete profesional SEO audit."
             price = "300"
-            [isSelected] = "seoSelected"
+            [isSelected] = "seoSelected()"
             (checkboxChanged)="onSeoSelectionChange($event)">
         </app-service-card>
 
@@ -15,7 +15,7 @@
             service = "Ads"
             serviceDescription = "Tailored ads campaign."
             price = "400"
-            [isSelected] = "adsSelected"
+            [isSelected] = "adsSelected()"
             (checkboxChanged)="onAdsSelectionChange($event)">
         </app-service-card>
 
@@ -23,7 +23,7 @@
             service = "Web"
             serviceDescription = "Responsive website development."
             price = "500"
-            [isSelected] = "webSelected"
+            [isSelected] = "webSelected()"
             (checkboxChanged)="onWebSelectionChange($event)">
         </app-service-card>
 
@@ -32,7 +32,7 @@
     <div class="column step1 flex-fill">
         <h2>Your order</h2>
         <app-final-price
-            [totalPrice]="totalPrice">
+            [totalPrice]="totalPrice()">
         </app-final-price>
     </div>
 

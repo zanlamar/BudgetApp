@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Panel } from '../panel/panel';
+import { ServiceChangeEvent } from '../../model/service-event.model'
 
 @Component({
   selector: 'app-service-card',
@@ -10,16 +11,15 @@ import { Panel } from '../panel/panel';
 })
 export class ServiceCard {
 
+  currentPages: number = 1;
+  currentLanguages: number = 1;
+
   @Input() service: string = '';
   @Input() serviceDescription: string = '';
   @Input() price: string = '';
   @Input() isSelected: boolean = false;
 
-  @Output() checkboxChanged = new EventEmitter<{
-    isSelected: boolean;
-    price: number;
-    service: string;
-  }>();
+  @Output() checkboxChanged = new EventEmitter<ServiceChangeEvent>();
 
   onCheckboxChange(event: any) {
     const isSelected = event.target.checked;
@@ -27,7 +27,33 @@ export class ServiceCard {
     this.checkboxChanged.emit({
       isSelected: isSelected,
       price: parseFloat(this.price),
-      service: this.service
+      service: this.service,
+      pages: this.currentPages,
+      languages: this.currentLanguages,
     });
+  }
+
+  onPagesInputChange(pagesNumber: number) {
+    this.currentPages = pagesNumber;
+    if (this.isSelected) {
+      this.emitChanges(true);
+    }
+  }
+
+  onLanguagesInputChange(languagesNumber: number) {
+    this.currentLanguages = languagesNumber;
+    if (this.isSelected) {
+      this.emitChanges(true);
+    }
+  }
+
+  private emitChanges(isSelected: boolean) {
+    this.checkboxChanged.emit({
+      isSelected: isSelected,
+      price: parseFloat(this.price),
+      service: this.service,
+      pages: this.currentPages,
+      languages: this.currentLanguages,
+    })
   }
 }
