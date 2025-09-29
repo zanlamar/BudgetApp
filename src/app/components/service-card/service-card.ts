@@ -15,13 +15,19 @@ export class ServiceCard {
   @Input() price: string = '';
   @Input() isSelected: boolean = false;
 
-  @Output() checkboxChanged = new EventEmitter<boolean>();
+  @Output() checkboxChanged = new EventEmitter<{
+    isSelected: boolean;
+    price: number;
+    service: string;
+  }>();
 
   onCheckboxChange(event: any) {
     const isSelected = event.target.checked;
-    this.checkboxChanged.emit(isSelected);
+
+    this.checkboxChanged.emit({
+      isSelected: isSelected,
+      price: parseFloat(this.price),
+      service: this.service
+    });
   }
-  
-
-
 }
