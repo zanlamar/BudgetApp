@@ -22,8 +22,8 @@ export class ServiceCard {
     isSelected: boolean;
     price: number;
     service: string;
-    pagesNumber: number;
-    languagesNumber: number;
+    pages: number;
+    languages: number;
   }>();
 
   onCheckboxChange(event: any) {
@@ -33,8 +33,8 @@ export class ServiceCard {
       isSelected: isSelected,
       price: parseFloat(this.price),
       service: this.service,
-      pagesNumber: this.currentPages,
-      languagesNumber: this.currentLanguages,
+      pages: this.currentPages,
+      languages: this.currentLanguages,
     });
   }
 
@@ -57,8 +57,8 @@ export class ServiceCard {
       isSelected: isSelected,
       price: parseFloat(this.price),
       service: this.service,
-      pagesNumber: this.currentPages,
-      languagesNumber: this.currentLanguages,
+      pages: this.currentPages,
+      languages: this.currentLanguages,
     })
   }
 }
