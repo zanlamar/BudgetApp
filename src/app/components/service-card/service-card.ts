@@ -11,19 +11,19 @@ import { ServiceChangeEvent } from '../../model/service-event.model'
 })
 export class ServiceCard {
 
-  currentPages: number = 1;
-  currentLanguages: number = 1;
+  currentPages = 1;
+  currentLanguages = 1;
 
-  @Input() service: string = '';
-  @Input() serviceDescription: string = '';
-  @Input() price: string = '';
-  @Input() isSelected: boolean = false;
+  @Input() service = '';
+  @Input() serviceDescription = '';
+  @Input() price = '';
+  @Input() isSelected = false;
 
   @Output() checkboxChanged = new EventEmitter<ServiceChangeEvent>();
 
-  onCheckboxChange(event: any) {
-    const isSelected = event.target.checked;
-
+  onCheckboxChange(event: Event) {
+    const isSelected = (event.target as HTMLInputElement).checked;
+    
     this.checkboxChanged.emit({
       isSelected: isSelected,
       price: parseFloat(this.price),

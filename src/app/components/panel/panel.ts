@@ -10,8 +10,8 @@ export class Panel implements OnInit {
   @Input() initialPageQuantity = 1;
   @Input() initialLanguageQuantity = 1;
 
-  @Input() servicePageLabel: string = '';
-  @Input() serviceLanguageLabel: string = '';
+  @Input() servicePageLabel = '';
+  @Input() serviceLanguageLabel = '';
 
 
   @Output() finalPageQuantity = new EventEmitter<number>();
@@ -27,7 +27,6 @@ export class Panel implements OnInit {
     this.languageQuantity.set(this.initialLanguageQuantity);
   }
 
-  // pending to add the functionality of making the panel disappear when it's zero
   decreasePageQuantity() {
     if (this.pageQuantity() > 1) {
       this.pageQuantity.update(value => value - 1);
