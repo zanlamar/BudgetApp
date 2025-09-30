@@ -3,7 +3,14 @@
     <div class="d-flex align-items-center justify-content-end mb-2 gap-4">
 
         <div class="d-flex align-items-center gap-2 label-fixed-width">
-            <i class="bi bi-info-circle-fill"></i>
+
+            <button type="button" 
+                class="btn" 
+                data-bs-toggle="modal" 
+                data-bs-target="#pagesModal">
+                    <i class="bi bi-info-circle-fill hover-primary"></i>
+            </button>
+
             <p class="mb-0 fw-medium text-nowrap"> {{ servicePageLabel }}</p>
         </div>
 
@@ -21,16 +28,23 @@
             
             <button type="button" class="btn btn-outline-primary quantity-right-plus"
                     (click)="increasePageQuantity()">
-                <i class="bi bi-plus"></i>
+                    <i class="bi bi-plus"></i>
             </button>
         </div>
     </div>
 
     <div class="d-flex align-items-center justify-content-end mb-3 gap-4">
         <div class="d-flex align-items-center gap-2 label-fixed-width">
-          <i class="bi bi-info-circle-fill"></i>
-          <p class="mb-0 fw-medium text-nowrap"> {{ serviceLanguageLabel }}</p>
-        </div>
+
+        <button type="button" 
+            class="btn" 
+            data-bs-toggle="modal" 
+            data-bs-target="#languagesModal">
+        <i class="bi bi-info-circle-fill hover-primary"></i>
+        </button>
+
+        <p class="mb-0 fw-medium text-nowrap"> {{ serviceLanguageLabel }}</p>
+    </div>
 
         <div class="input-group" style="width: 130px;">
           <button type="button" 
@@ -48,6 +62,38 @@
                 (click)="increaseLanguageQuantity()">
               <i class="bi bi-plus"></i>
           </button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal languages -->
+<div class="modal fade" id="languagesModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title" id="miModalLabel">🌍💬 How many languages?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mb-0">
+                <p>Please add the number of languages your project will need. If you are not sure, just introduce an estimation and we will work together for the perfect solution for you.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pages -->
+<div class="modal fade" id="pagesModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title" id="miModalLabel">📄✨ How many pages?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mb-0">
+                <p>Please specify the number of pages your website will have. If you're unsure, provide an estimate and we'll work together to determine the exact scope and find the perfect solution for your project.</p>
+            </div>
         </div>
     </div>
 </div>
