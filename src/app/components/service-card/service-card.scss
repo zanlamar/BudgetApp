@@ -1,3 +1,10 @@
 .card {
-    margin: 0.5em
+    margin: 0.5em;
+
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  
+  &.card-selected {
+    border-color: var(--bs-primary);
+  }
 }
