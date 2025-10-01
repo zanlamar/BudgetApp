@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {FormGroup, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 
 
 @Component({
@@ -10,9 +10,11 @@ import {FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators} fr
   standalone: true,
 })
 export class ContactForm {
-  contactForm = FormGroup;
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {
+  contactForm: FormGroup;
+
+  constructor() {
     this.contactForm = this.fb.group({
       userName: ['', Validators.required],
       userEmail: ['', [Validators.required, Validators.email]],
