@@ -1,0 +1,17 @@
+<div class="bg-light w-100 top-0">
+    <div class="container">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <label for="name">Name: </label>
+            <input id="userName" type="text" formControlName="userName">
+
+            <label for="email">Email: </label>
+            <input id="userEmail" type="email" formControlName="userEmail">
+
+            <label for="telephone">Message: </label>
+            <input id="userTelephone" type="number" formControlName="userTelephone">
+
+            <p>Complete the form to enable button.</p>
+            <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+        </form>
+    </div>
+</div>
