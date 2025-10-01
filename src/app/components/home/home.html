@@ -1,35 +1,36 @@
 <div class="container-fluid px-3 d-flex gap-3 mt-2">
-    <div class="column step1 flex-fill">
+    <div class="column step1 flex-fill ">
 
         <h2>Our services</h2>
 
-        <app-service-card
-            service = "SEO"
-            serviceDescription = "Complete profesional SEO audit."
-            price = "300"
-            [isSelected] = "seoSelected()"
-            (checkboxChanged)="onSeoSelectionChange($event)">
-        </app-service-card>
+        <div class = mt-5>
+            <app-service-card
+                service = "SEO"
+                serviceDescription = "Complete profesional SEO audit."
+                price = "300"
+                [isSelected] = "seoSelected()"
+                (checkboxChanged)="onSeoSelectionChange($event)">
+            </app-service-card>
 
-        <app-service-card
-            service = "Ads"
-            serviceDescription = "Tailored ads campaign."
-            price = "400"
-            [isSelected] = "adsSelected()"
-            (checkboxChanged)="onAdsSelectionChange($event)">
-        </app-service-card>
+            <app-service-card
+                service = "Ads"
+                serviceDescription = "Tailored ads campaign."
+                price = "400"
+                [isSelected] = "adsSelected()"
+                (checkboxChanged)="onAdsSelectionChange($event)">
+            </app-service-card>
 
-        <app-service-card
-            service = "Web"
-            serviceDescription = "Responsive website development."
-            price = "500"
-            [isSelected] = "webSelected()"
-            (checkboxChanged)="onWebSelectionChange($event)">
-        </app-service-card>
-
+            <app-service-card
+                service = "Web"
+                serviceDescription = "Responsive website development."
+                price = "500"
+                [isSelected] = "webSelected()"
+                (checkboxChanged)="onWebSelectionChange($event)">
+            </app-service-card>
+        </div>
     </div>
 
-    <div class="column step1 flex-fill">
+    <div class="column step1">
         <h2>Your order</h2>
         <app-final-price
             [totalPrice]="totalPrice()">
@@ -38,5 +39,6 @@
 
     <div class="column step3">
         <h2>Get in touch</h2>
+        <app-contact-form></app-contact-form>
     </div>
 </div>

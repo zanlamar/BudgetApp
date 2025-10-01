@@ -1,17 +1,62 @@
-<div class="bg-light w-100 top-0">
-    <div class="container">
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            <label for="name">Name: </label>
-            <input id="userName" type="text" formControlName="userName">
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="card px-2 py-2">
+        <div class="card-body">
+            <h6 class="information">Contact us, we are thrilled to assist you!</h6>
+            
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="userName" class="col-form-label-sm">Name</label>
+                                <div class="input-group">
+                                    <input id="userName" 
+                                        type="text" 
+                                        formControlName="userName" 
+                                        class="form-control" 
+                                        placeholder="Your name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <label for="email">Email: </label>
-            <input id="userEmail" type="email" formControlName="userEmail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="userEmail" class="col-form-label-sm">Email</label>
+                                <div class="input-group">
+                                    <input id="userEmail" 
+                                        type="email" 
+                                        formControlName="userEmail" 
+                                        class="form-control" 
+                                        placeholder="Your email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <label for="telephone">Message: </label>
-            <input id="userTelephone" type="number" formControlName="userTelephone">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="userTelephone" class="col-form-label-sm">Telephone</label>
+                                <div class="input-group">
+                                    <input id="userTelephone" 
+                                           type="number" 
+                                           formControlName="userTelephone" 
+                                           class="form-control" 
+                                           placeholder="Your telephone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <p>Complete the form to enable button.</p>
-            <button type="submit" [disabled]="!contactForm.valid">Submit</button>
-        </form>
+                <button type="submit" 
+                        class="btn btn-primary btn-block confirm-button" 
+                        [disabled]="!contactForm.valid">
+                    Submit
+                </button>
+            </form>
+        </div>
     </div>
 </div>
