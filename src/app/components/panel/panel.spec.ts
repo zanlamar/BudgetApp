@@ -20,4 +20,5 @@ describe('Panel', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

@@ -20,4 +20,8 @@ describe('ServiceCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have isSelected false by default', () => {
+  expect(component.isSelected).toBe(false);
+  });
 });

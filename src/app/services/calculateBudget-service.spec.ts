@@ -19,6 +19,25 @@ describe('BudgetCalculatorService', () => {
       price: 300
     };
     
-    const result = service.calculateServicePrice(mockService.price, mockService.pages, mockService.languages);
-    expect(result).toBe(660); 
-});})
+      const result = service.calculateServicePrice(mockService.price, mockService.pages, mockService.languages);
+      expect(result).toBe(660);
+    });
+
+    // it('should calculate budget as 0 when no services selected', () => {
+    //   const result = service.calculateServicePrice(0, 0, 0);
+    //   expect(result).toBe(0);
+    // });
+
+    it('should have initial total budget as 0', () => {
+        expect(service.getTotalBudget()).toBe(0);
+    });
+
+    it('should reset total budget to 0', () => {
+      service.setTotalBudget(500);
+      expect(service.getTotalBudget()).toBe(500);
+  
+      service.resetTotalBudget();
+      expect(service.getTotalBudget()).toBe(0);
+    });
+
+});

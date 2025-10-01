@@ -13,7 +13,6 @@ export class Panel implements OnInit {
   @Input() servicePageLabel = '';
   @Input() serviceLanguageLabel = '';
 
-
   @Output() finalPageQuantity = new EventEmitter<number>();
   @Output() finalLanguageQuantity = new EventEmitter<number>();
 
