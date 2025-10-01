@@ -4,11 +4,12 @@ import { FinalPrice } from '../final-price/final-price';
 import { PRICES } from '../../model/pricing.constants';
 import { ServiceChangeEvent } from '../../model/service-event.model';
 import { BudgetCalculatorService} from '../../services/calculateBudget-service'
+import { ContactForm } from '../contact-form/contact-form';
 
 
 @Component({
   selector: 'app-home',
-  imports: [ServiceCard, FinalPrice],
+  imports: [ServiceCard, FinalPrice, ContactForm],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   standalone: true
