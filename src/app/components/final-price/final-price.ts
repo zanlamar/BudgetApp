@@ -10,7 +10,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class FinalPrice {
 
-  @Input() totalPrice: number = 0;
+  @Input() totalPrice = 0;
 }
 
 
