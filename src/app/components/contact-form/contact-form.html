@@ -23,8 +23,8 @@
 
                     <div class="row">
                     <div class="col-sm-12">
-                        <div class="form-group">
-                            <!-- <label for="userEmail" class="col-form-label-sm">Email</label> -->
+                        <app-email-field></app-email-field>
+                        <!-- <div class="form-group">
                             <div class="input-group">
                                 <input id="userEmail" 
                                     type="email" 
@@ -38,7 +38,7 @@
                             </div>
                             @if (userEmailControl.invalid && userEmailControl.touched) {
                                  <small class="text-danger d-block mt-1">{{errorMessage()}}</small>
-                            }
+                            } -->
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <br>
                 <button type="submit" 
                         class="btn btn-primary btn-block confirm-button w-100" 

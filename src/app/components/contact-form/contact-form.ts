@@ -2,11 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-
+import { FormFieldErrorExample } from '../inputs/email-field/email-field';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, FormFieldErrorExample],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
@@ -49,7 +49,6 @@ export class ContactForm {
     }
   }
 
-  // errorMessage() {
 
 
 

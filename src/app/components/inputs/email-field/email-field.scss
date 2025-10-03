@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.form-field-overrides((
+    disabled-input-text-placeholder-color: --mat-sys-on-surface
+
+  ));
+}
