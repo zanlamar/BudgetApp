@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
-import {FormGroup, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
@@ -13,6 +15,7 @@ export class ContactForm {
   private fb = inject(FormBuilder);
 
   contactForm: FormGroup;
+  errorMessage = signal('');
 
   constructor() {
     this.contactForm = this.fb.group({
@@ -20,6 +23,10 @@ export class ContactForm {
       userEmail: ['', [Validators.required, Validators.email]],
       userTelephone: ['', Validators.required]
     });
+  }
+
+  get userEmailControl(): FormControl {
+   return this.contactForm.get('userEmail') as FormControl;
   }
 
   updateName() {
@@ -31,5 +38,20 @@ export class ContactForm {
       console.warn(this.contactForm.value);
     };
   }
+
+  updateErrorMessage() {
+    if (this.userEmailControl.hasError('required')) {
+      this.errorMessage.set('You must enter a value');
+    } else if (this.userEmailControl.hasError('email')) {
+      this.errorMessage.set('Not a valid email');
+    } else {
+      this.errorMessage.set('');
+    }
+  }
+
+  // errorMessage() {
+
+
+
 
 }

@@ -5,6 +5,7 @@
             
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
+                    
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
@@ -21,19 +22,26 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <!-- <label for="userEmail" class="col-form-label-sm">Email</label> -->
-                                <div class="input-group">
-                                    <input id="userEmail" 
-                                        type="email" 
-                                        formControlName="userEmail" 
-                                        class="form-control" 
-                                        placeholder="Your email">
-                                </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <!-- <label for="userEmail" class="col-form-label-sm">Email</label> -->
+                            <div class="input-group">
+                                <input id="userEmail" 
+                                    type="email" 
+                                    formControlName="userEmail" 
+                                    class="form-control"
+                                    [class.is-invalid]="userEmailControl.invalid && userEmailControl.touched"
+                                    placeholder="Your email"
+                                    (blur)="updateErrorMessage()"
+                                    (input)="updateErrorMessage()"
+                                    required>
                             </div>
+                            @if (userEmailControl.invalid && userEmailControl.touched) {
+                                 <small class="text-danger d-block mt-1">{{errorMessage()}}</small>
+                            }
                         </div>
                     </div>
+                </div>
 
                     <div class="row">
                         <div class="col-sm-12">
