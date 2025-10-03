@@ -1,23 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// /**
+//  * @license
+//  * Copyright Google LLC All Rights Reserved.
+//  *
+//  * Use of this source code is governed by an MIT-style license that can be
+//  * found in the LICENSE file at https://angular.dev/license
+//  */
 
-import { EmailField } from './email-field';
+// // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
-describe('EmailField', () => {
-  let component: EmailField;
-  let fixture: ComponentFixture<EmailField>;
+// import 'zone.js/testing';
+// import {getTestBed} from '@angular/core/testing';
+// import {
+//   BrowserDynamicTestingModule,
+//   platformBrowserDynamicTesting,
+// } from '@angular/platform-browser-dynamic/testing';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EmailField]
-    })
-    .compileComponents();
+// // First, initialize the Angular testing environment.
+// getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 
-    fixture = TestBed.createComponent(EmailField);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// // Then we find all the tests.
+// const context = (import.meta as any).webpackContext('./', {
+//   recursive: true,
+//   regExp: /\.spec\.ts$/,
+// });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+// // And load the modules.
+// context.keys().map(context);

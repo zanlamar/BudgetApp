@@ -3,10 +3,11 @@ import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormFieldErrorExample } from '../inputs/email-field/email-field';
+import { NameField } from '../inputs/name-field/name-field';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, FormFieldErrorExample],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, FormFieldErrorExample, NameField],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
