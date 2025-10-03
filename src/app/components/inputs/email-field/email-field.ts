@@ -13,9 +13,12 @@ import {merge} from 'rxjs';
   imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormFieldErrorExample {
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
 
+export class EmailField {
+  readonly email = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
   errorMessage = signal('');
 
   constructor() {
@@ -26,7 +29,7 @@ export class FormFieldErrorExample {
 
   updateErrorMessage() {
     if (this.email.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
+      this.errorMessage.set("Don't leave it empty!");
     } else if (this.email.hasError('email')) {
       this.errorMessage.set('Not a valid email');
     } else {

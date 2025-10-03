@@ -1,0 +1,17 @@
+<div class="example-container">
+    <mat-form-field appearance="outline">
+    <mat-label>Your phone</mat-label>
+    <input 
+        matInput
+        type="number"
+        [formControl]="phone"
+        placeholder="941441618"
+        (blur)="updateErrorMessage()"
+        required
+        />
+
+    @if (phone.invalid && phone.touched) {
+      <mat-error>{{errorMessage()}}</mat-error>
+    }
+    </mat-form-field>
+</div>
