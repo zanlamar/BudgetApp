@@ -4,12 +4,12 @@
     <input 
       matInput
       type="text"
-      [formControl]="name"
+      [formControl]="userNameCheck"
       placeholder="Mr. Barrit" 
       (blur)="updateErrorMessage()"
       required />
 
-    @if (name.invalid && name.touched) {
+    @if (userNameCheck.invalid && userNameCheck.touched) {
     <mat-error>{{errorMessage()}}</mat-error>
     }
   </mat-form-field>

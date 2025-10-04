@@ -1,9 +1,7 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, Component, signal, Input} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {merge} from 'rxjs';
 
 /** @title Form field with error messages */
 @Component({
@@ -15,22 +13,15 @@ import {merge} from 'rxjs';
 })
 
 export class EmailField {
-  readonly email = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
+
+  @Input() emailCheck!: FormControl;
+
   errorMessage = signal('');
 
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
-  }
-
   updateErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.emailCheck.hasError('required')) {
       this.errorMessage.set("Don't leave it empty!");
-    } else if (this.email.hasError('email')) {
+    } else if (this.emailCheck.hasError('email')) {
       this.errorMessage.set('Not a valid email');
     } else {
       this.errorMessage.set('');
