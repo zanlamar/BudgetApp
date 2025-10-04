@@ -27,6 +27,8 @@ export class TelephoneField {
       this.errorMessage.set('Your phone number is too short');
     } else if (this.phoneCheck.hasError('maxlength')) {
       this.errorMessage.set('Your phone number is too long!');
+    } else if (this.phoneCheck.hasError('pattern')) {  
+    this.errorMessage.set('Only numbers are allowed');
     } else {
       this.errorMessage.set('');
     }
