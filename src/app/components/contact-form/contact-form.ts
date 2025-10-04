@@ -55,6 +55,8 @@ export class ContactForm {
   onSubmit() {
     if (this.contactForm.valid) {
       console.warn(this.contactForm.value);
+      console.log(this.contactForm.value);
+      alert(`Thank you!! ${this.contactForm.value.userName}!`);
     }
   }
 }

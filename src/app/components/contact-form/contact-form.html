@@ -31,7 +31,7 @@
                 </div>
 
                 <button type="submit" 
-                        class="btn btn-primary btn-block confirm-button w-100" 
+                        [class]="contactForm.valid ? 'btn btn-success w-75' : 'btn btn-secondary w-75'" 
                         [disabled]="!contactForm.valid">
                     Submit
                 </button>
