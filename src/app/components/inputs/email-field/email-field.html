@@ -1,0 +1,15 @@
+<div class="example-container">
+  <mat-form-field appearance="outline" hintLabel="We will get in touch via this email">
+    <mat-label>Your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      [formControl]="email"
+      (blur)="updateErrorMessage()"
+      required
+    />
+    @if (email.invalid) {
+      <mat-error>{{errorMessage()}}</mat-error>
+    }
+  </mat-form-field>
+</div>
