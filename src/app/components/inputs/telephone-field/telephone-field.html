@@ -3,14 +3,14 @@
     <mat-label>Your phone</mat-label>
     <input 
         matInput
-        type="number"
-        [formControl]="phone"
+        type="tel"
+        [formControl]="phoneCheck"
         placeholder="941441618"
         (blur)="updateErrorMessage()"
         required
         />
 
-    @if (phone.invalid && phone.touched) {
+    @if (phoneCheck.invalid && phoneCheck.touched) {
       <mat-error>{{errorMessage()}}</mat-error>
     }
     </mat-form-field>

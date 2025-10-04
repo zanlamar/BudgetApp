@@ -1,10 +1,8 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, signal} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
-import { merge } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 
 
 /** @title Simple form field */
@@ -12,33 +10,25 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'app-telephone-field',
   templateUrl: 'telephone-field.html',
   styleUrl: 'telephone-field.scss',
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, FormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class TelephoneField {
-  readonly phone = new FormControl('', [
-    Validators.required, 
-    Validators.pattern('^[0-9]*$'),
-    Validators.minLength(9),
-    Validators.maxLength(15),
-  ]);
+
+  @Input() phoneCheck!: FormControl;
 
   errorMessage = signal('');
 
-  constructor() {
-    merge(this.phone.statusChanges, this.phone.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
-  }
-
     updateErrorMessage() {
-    if (this.phone.hasError('required')) {
+    if (this.phoneCheck.hasError('required')) {
       this.errorMessage.set("Don't leave it empty!");
-    } else if (this.phone.hasError('minLength')) {
+    } else if (this.phoneCheck.hasError('minlength')) {
       this.errorMessage.set('Your phone number is too short');
-    } else if (this.phone.hasError('maxLength')) {
+    } else if (this.phoneCheck.hasError('maxlength')) {
       this.errorMessage.set('Your phone number is too long!');
+    } else if (this.phoneCheck.hasError('pattern')) {  
+    this.errorMessage.set('Only numbers are allowed');
     } else {
       this.errorMessage.set('');
     }
