@@ -1,8 +1,8 @@
 .card {
-    margin: 0.5em;
-
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
+  margin: 0.5em auto;
+  width: 60%;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
   
   &.card-selected {
     border-color: var(--bs-primary);
