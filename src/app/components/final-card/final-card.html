@@ -1,0 +1,49 @@
+@if (orderSummary) {
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-margin">
+                    <!-- <div class="card-header no-border">
+                        <h5 class="card-title">MOM</h5>
+                    </div> -->
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span class="widget-49-date-month">TOTAL</span>
+                                    <span class="widget-49-date-day">{{orderSummary!.totalPrice}} €</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title">{{orderSummary!.userName}}</span>
+                                    <span class="widget-49-meeting-time">{{orderSummary!.userEmail}}</span>
+                                    <span class="widget-49-meeting-time">{{orderSummary!.userPhone}}</span>
+                                </div>
+                            </div>
+
+                            <ul class="widget-49-meeting-points">
+                                <div class="widget-49-title-wrapper">Your services</div>
+                                  @if (orderSummary!.services.web) {
+                                <li class="widget-49-meeting-item">
+                                     <span>WEB: {{orderSummary!.services.web.pages}} Pages, 
+                                    {{orderSummary!.services.web.languages}} Languages</span>
+                                </li>
+                                  }
+                                @if (orderSummary!.services.ads) {
+                                <li class="widget-49-meeting-item"><span>ADS</span></li>
+                                }
+                                @if (orderSummary!.services.seo) {
+                                <li class="widget-49-meeting-item"><span>SEO</span></li>
+                                }
+                            </ul>
+                            <!-- <div class="widget-49-meeting-action">
+                                <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -22,3 +22,11 @@ h5 {
   justify-content: space-between;
 }
 
+.orders-container {
+  margin-top: 2rem;
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

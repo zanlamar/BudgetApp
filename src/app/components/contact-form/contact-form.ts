@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { NameField } from '../inputs/name-field/name-field';
 import { TelephoneField } from "../inputs/telephone-field/telephone-field";
 import { EmailField } from '../inputs/email-field/email-field';
+import { ContactFormData } from '../../../types/types';
 
 @Component({
   selector: 'app-contact-form',
@@ -13,12 +14,14 @@ import { EmailField } from '../inputs/email-field/email-field';
   styleUrl: './contact-form.scss',
   standalone: true,
 })
+
 export class ContactForm {
   private fb = inject(FormBuilder);
 
   contactForm: FormGroup;
 
   constructor() {
+
     this.contactForm = this.fb.group({
       userName: ['', [ 
         Validators.required,
@@ -52,11 +55,16 @@ export class ContactForm {
     return this.contactForm.get('userTelephone') as FormControl;
   }
 
+  @Output() formSubmitted = new EventEmitter<ContactFormData>();
+
   onSubmit() {
     if (this.contactForm.valid) {
-      console.warn(this.contactForm.value);
-      console.log(this.contactForm.value);
-      alert(`Thank you!! ${this.contactForm.value.userName}!`);
+      this.formSubmitted.emit(this.contactForm.value);
+      this.contactForm.reset();
+      this.contactForm.markAsUntouched();
+      this.contactForm.markAsPristine();
     }
   }
+
+  
 }
