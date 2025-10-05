@@ -37,16 +37,14 @@
                 (checkboxChanged)="onSeoSelectionChange($event)">
             </app-service-card>
 
-            <div class="orders-container">
-                <div class="row">
-                    @for (order of allOrders(); track $index) {
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <app-final-card 
-                                [orderSummary]="order">
-                            </app-final-card>
-                        </div>
-                    }
-                </div>
+            <div class="row mt-3">
+                @for (order of allOrders(); track $index) {
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <app-final-card 
+                            [orderSummary]="order">
+                        </app-final-card>
+                    </div>
+                }
             </div>
         </div>
     </div>
