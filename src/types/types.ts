@@ -14,6 +14,6 @@ export interface SubmissionData {
         ads: boolean;
         seo: boolean;
     };
-
+    createdAt?: Date;
 }
 

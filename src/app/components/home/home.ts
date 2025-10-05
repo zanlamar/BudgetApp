@@ -7,7 +7,7 @@ import { BudgetCalculatorService} from '../../services/calculateBudget-service'
 import { ContactForm } from '../contact-form/contact-form';
 import { FinalCard } from "../final-card/final-card";
 
-import { ConfirmedOrder } from '../../services/createOrder';
+import { ConfirmedSubmission } from '../../services/createOrder'; 
 import { SubmissionData, ContactFormData } from '../../../types/types';
 
 
@@ -21,7 +21,7 @@ import { SubmissionData, ContactFormData } from '../../../types/types';
 export class Home {
 
   private budgetCalculator = inject(BudgetCalculatorService);
-  private orderService = inject(ConfirmedOrder);
+  private orderService = inject(ConfirmedSubmission);
 
   seoSelected = signal(false);
   adsSelected = signal(false);
@@ -84,7 +84,7 @@ export class Home {
   }
 
   onFormSubmitted(formData: ContactFormData) {
-    const submission = this.createOrder.ConfirmedOrder(
+    const submission = this.orderService.createSubmission(
       formData,
       {
         web: this.webSelected() ? this.webData() : undefined,
