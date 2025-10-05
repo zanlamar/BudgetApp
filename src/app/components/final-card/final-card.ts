@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { createSummary } from 'src/app/model/summary.model';
+import { SubmissionData } from '../../../types/types';
+
+
 
 @Component({
   selector: 'app-final-card',
   imports: [CommonModule],
   templateUrl: './final-card.html',
-  styleUrl: './final-card.scss'
+  styleUrl: './final-card.scss',
+  standalone: true,
 })
 export class FinalCard {
-  createSummary = createSummary;
+
+  @Input() orderSummary: SubmissionData | null = null;
 
 }

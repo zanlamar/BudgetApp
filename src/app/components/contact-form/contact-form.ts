@@ -60,7 +60,11 @@ export class ContactForm {
   onSubmit() {
     if (this.contactForm.valid) {
       this.formSubmitted.emit(this.contactForm.value);
-      alert(`Thank you!! ${this.contactForm.value.userName}!`);
+      this.contactForm.reset();
+      this.contactForm.markAsUntouched();
+      this.contactForm.markAsPristine();
     }
   }
+
+  
 }

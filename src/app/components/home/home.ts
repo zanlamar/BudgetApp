@@ -32,6 +32,7 @@ export class Home {
   webData = signal({ pages: 1, languages: 1 });
   
   orderSummary = signal<SubmissionData | null>(null);
+  allOrders = signal<SubmissionData[]>([]);
 
 
   totalPrice = computed(() => {
@@ -84,6 +85,13 @@ export class Home {
   }
 
   onFormSubmitted(formData: ContactFormData) {
+      if (this.totalPrice() === 0) {
+        alert('Please select at least one service before submitting.');
+        return; 
+      }
+
+
+
     const submission = this.orderService.createSubmission(
       formData,
       {
@@ -93,7 +101,11 @@ export class Home {
       },
       this.totalPrice()
     );
+
+    this.allOrders.update(orders => [...orders, submission]);
     this.orderSummary.set(submission);
+    alert(`Thank you, ${submission.userName}! Your we will get in touch with you soon.`);
+
   }
 
 
