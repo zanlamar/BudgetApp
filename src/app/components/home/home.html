@@ -37,14 +37,20 @@
                 (checkboxChanged)="onSeoSelectionChange($event)">
             </app-service-card>
 
+            <app-final-card></app-final-card>   
         </div>
     </div>
 
+    
 
     <div class="column step3">
         <div class="contact-header-container">
             <!-- <h2>Get in touch</h2> -->
-            <app-contact-form></app-contact-form>
+            <app-contact-form
+                (formSubmitted)="onFormSubmitted($event)">
+            </app-contact-form>
         </div>
     </div>
+
+
 </div>
