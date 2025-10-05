@@ -12,8 +12,8 @@ h5 {
 }
 
 .services-header-container {
-  width: 60%;       /* 👈 mismo ancho que las cards */
-  margin: 1rem auto;   /* 👈 centrado horizontal */
+  width: 60%;       
+  margin: 1rem auto; 
 }
 
 .services-header {
@@ -22,3 +22,19 @@ h5 {
   justify-content: space-between;
 }
 
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  
+  // Para tablets
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  // Para móviles
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
