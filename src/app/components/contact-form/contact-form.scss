@@ -1,15 +1,15 @@
-
-// Ajuste de la card contenedora
 .card {
-    width: 400px;
-    background-color: #fff;
-    border: none;
-    border-radius: 12px;
+  width: 400px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
-// .form-group {
-//   margin: 5px;
-// }
+.information {
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
 
 .input-group {
   width: 100%;
@@ -17,12 +17,37 @@
   line-height: 27px;
 }
 
-// Botón de confirmación (manteniendo estilo Angular Material)
 .confirm-button {
   width: 100%;
   margin-top: 16px;
   border-radius: 8px;
 }
 
-
-
+// Botones personalizados
+// Botones personalizados
+button[type="submit"] {
+  padding: 12px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  
+  // Botón deshabilitado
+  &.btn-secondary {
+    background-color: var(--text-muted);
+    color: var(--bg-primary);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  // Botón activo
+  &.btn-success {
+    background-color: var(--accent-primary); // Verde neon
+    color: var(--text-primary);
+    cursor: pointer;
+    
+    &:hover {
+      background-color: var(--accent-success); // Púrpura en hover
+      transform: translateY(-2px);
+    }
+  }
+}

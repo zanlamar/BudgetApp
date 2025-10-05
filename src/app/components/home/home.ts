@@ -5,11 +5,15 @@ import { PRICES } from '../../model/pricing.constants';
 import { ServiceChangeEvent } from '../../model/service-event.model';
 import { BudgetCalculatorService} from '../../services/calculateBudget-service'
 import { ContactForm } from '../contact-form/contact-form';
+import { FinalCard } from "../final-card/final-card";
+
+import { ConfirmedSubmission } from '../../services/createOrder'; 
+import { SubmissionData, ContactFormData } from '../../../types/types';
 
 
 @Component({
   selector: 'app-home',
-  imports: [ServiceCard, FinalPrice, ContactForm],
+  imports: [ServiceCard, FinalPrice, ContactForm, FinalCard],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   standalone: true
@@ -17,14 +21,19 @@ import { ContactForm } from '../contact-form/contact-form';
 export class Home {
 
   private budgetCalculator = inject(BudgetCalculatorService);
+  private orderService = inject(ConfirmedSubmission);
 
   seoSelected = signal(false);
   adsSelected = signal(false);
   webSelected = signal(false);
-
+  
   seoData = signal({ pages: 1, languages: 1 });
   adsData = signal({ pages: 1, languages: 1 });
   webData = signal({ pages: 1, languages: 1 });
+  
+  orderSummary = signal<SubmissionData | null>(null);
+  allOrders = signal<SubmissionData[]>([]);
+
 
   totalPrice = computed(() => {
     let total = 0;
@@ -73,6 +82,30 @@ export class Home {
   onWebSelectionChange(eventData: ServiceChangeEvent) {
     this.webSelected.set(eventData.isSelected);
     this.webData.set({pages: eventData.pages, languages: eventData.languages});
+  }
+
+  onFormSubmitted(formData: ContactFormData) {
+      if (this.totalPrice() === 0) {
+        alert('Please select at least one service before submitting.');
+        return; 
+      }
+
+
+
+    const submission = this.orderService.createSubmission(
+      formData,
+      {
+        web: this.webSelected() ? this.webData() : undefined,
+        ads: this.adsSelected(),
+        seo: this.seoSelected()
+      },
+      this.totalPrice()
+    );
+
+    this.allOrders.update(orders => [...orders, submission]);
+    this.orderSummary.set(submission);
+    alert(`Thank you, ${submission.userName}! Your we will get in touch with you soon.`);
+
   }
 
 

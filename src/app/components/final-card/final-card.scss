@@ -1,0 +1,80 @@
+
+.summary-card {
+  margin: 0;
+  width: 100%;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(82, 63, 105, 0.1);
+  padding: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+}
+
+.summary-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #edf1fc;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.summary-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.summary-amount {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.summary-user {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.user-name {
+  color: #3c4142;
+  font-size: 14px;
+}
+
+.user-email,
+.user-phone {
+  color: #b1bac5;
+  font-size: 13px;
+}
+
+.summary-services {
+  margin-top: 0.75rem;
+}
+
+.summary-services h6 {
+  font-size: 14px;
+  color: #3c4142;
+  margin-bottom: 0.25rem;
+}
+
+.summary-services ul {
+  margin: 0;
+  padding-left: 1rem;
+  list-style-type: disc;
+  color: #727686;
+  font-size: 13px;
+}
+
+.summary-services li {
+  margin-bottom: 0.25rem;
+}
