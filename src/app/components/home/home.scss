@@ -1,5 +1,4 @@
 .column {
-  background-color: #80ba7c;
   padding: 10px;
   width: 30%;
   text-align: start;
@@ -7,13 +6,18 @@
 }
 
 h5 {
-    margin-bottom: 0 !important;
-    margin-left: 4rem !important;
+  margin-bottom: 0 !important;
+  margin-left: 4rem !important;
+  color: var(--text-primary);
 }
 
 .services-header-container {
   width: 60%;       
-  margin: 1rem auto; 
+  margin: 1rem auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.5rem 0;
 }
 
 .services-header {
@@ -22,18 +26,23 @@ h5 {
   justify-content: space-between;
 }
 
+.contact-header-container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.5rem 0;
+}
+
 .orders-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 100%;
   
-  // Para tablets
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  // Para móviles
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }

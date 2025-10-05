@@ -1,10 +1,4 @@
 @use "bootstrap/scss/bootstrap";
-
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
 html {
@@ -18,23 +12,124 @@ html {
   ));
 }
 
+// AÑADE TUS VARIABLES PERSONALIZADAS AQUÍ
+:root {
+  // Dark mode palette with vibrant neon accents + pink
+  --bg-primary: #0a0e27;
+  --bg-secondary: #141829;
+  --bg-card: #1e2139;
+  --text-primary: #ffffff;
+  --text-secondary: #dfe3fa;
+  --text-muted: #888eb0;
+  --accent-primary: #7c5dfa; // Purple neon
+  --accent-secondary: #9277ff;
+  --accent-tertiary: #00d4ff; // Cyan neon
+  --accent-success: #33d69f; // Green neon
+  --accent-pink: #ff2d95; // Pink neon
+  --border-color: #252945;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --highlight-bg: #252945;
+}
+
+
+
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  color-scheme: dark;
+  
+  // SOBRESCRIBE los colores de Material con tus variables
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
   margin: 0;
 }
-/* You can add global styles to this file, and also import other style files */
-// @use "bootstrap/scss/bootstrap";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { 
+  height: 100%; 
+}
+
+// Estilos globales adicionales si los necesitas
+* {
+  box-sizing: border-box;
+}
+
+// Customización de Angular Material para dark mode neon
+.mat-mdc-form-field {
+  // Color del texto en el input
+  .mat-mdc-input-element {
+    color: var(--text-primary) !important;
+  }
+
+  // Label (tanto flotante como normal)
+  .mat-mdc-floating-label,
+  .mdc-floating-label {
+    color: var(--text-secondary) !important;
+  }
+
+  // Label cuando está focused
+  &.mat-focused {
+    .mat-mdc-floating-label,
+    .mdc-floating-label {
+      color: var(--accent-tertiary) !important; // Cyan cuando está activo
+    }
+  }
+
+  // Bordes del outline
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--border-color) !important;
+  }
+
+  // Bordes cuando está focused
+  &.mat-focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--accent-tertiary) !important; // Cyan
+      border-width: 2px !important;
+    }
+  }
+
+  // Hint text (el texto de ayuda)
+  .mat-mdc-form-field-hint {
+    color: var(--text-muted) !important;
+  }
+
+  // Error messages
+  .mat-mdc-form-field-error {
+    color: var(--accent-pink) !important; // Rosa para errores
+  }
+
+  // Icono de error
+  .mat-mdc-form-field-error-wrapper {
+    .mat-icon {
+      color: var(--accent-pink) !important;
+    }
+  }
+
+  // Estado válido (puedes añadir un color diferente si quieres)
+  &.mat-form-field-invalid {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--accent-pink) !important; // Rosa cuando hay error
+    }
+  }
+
+  // Background del input
+  .mat-mdc-text-field-wrapper {
+    background-color: var(--bg-card) !important;
+  }
+}
+
+// Placeholder text
+::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.7;
+}
+
+// Autocomplete de Material (si lo usas)
+.mat-mdc-autocomplete-panel {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
