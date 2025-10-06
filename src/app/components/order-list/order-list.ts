@@ -21,8 +21,7 @@ export class OrderList {
   }
   set orders(value: SubmissionData[]) {
     this._orders = value ?? [];
-    // Actualizamos el signal con una **nueva referencia** para asegurar reactividad
-     this.ordersSignal.set([...this._orders]);
+    this.ordersSignal.set([...this._orders]);
   }
 
   selectedFilter = signal<string>('all');
