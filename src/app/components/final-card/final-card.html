@@ -1,33 +1,32 @@
-@if (orderSummary) {
-  <div class="summary-card row">
+@if (order) {
+  <div class="summary-card row mb-2">
     <div class="summary-header">
       <div class="summary-total">
         <span class="summary-label">TOTAL</span>
-        <span class="summary-amount">{{ orderSummary!.totalPrice }} €</span>
+        <span class="summary-amount">{{ order.totalPrice }} €</span>
       </div>
 
       <div class="summary-user">
-        <span class="user-name">{{ orderSummary!.userName }}</span>
-        <span class="user-email">{{ orderSummary!.userEmail }}</span>
-        <span class="user-phone">{{ orderSummary!.userPhone }}</span>
+        <span class="user-name">{{order.userName}}</span>
+        <span class="user-email">{{order.userEmail}}</span>
+        <span class="user-phone">{{order.userPhone}}</span>
       </div>
     </div>
 
     <div class="summary-services">
-      <h6>Your Services</h6>
       <ul>
-        @if (orderSummary!.services.web) {
+        @if (order.services.web) {
           <li>
-            WEB: {{ orderSummary!.services.web.pages }} Pages, 
-            {{ orderSummary!.services.web.languages }} Languages
+            WEB: {{ order.services.web.pages }} Pages, 
+            {{ order.services.web.languages }} Languages
           </li>
         }
 
-        @if (orderSummary!.services.ads) {
+        @if (order.services.ads) {
           <li>ADS</li>
         }
 
-        @if (orderSummary!.services.seo) {
+        @if (order.services.seo) {
           <li>SEO</li>
         }
       </ul>

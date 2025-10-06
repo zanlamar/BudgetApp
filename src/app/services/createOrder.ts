@@ -13,6 +13,7 @@ export class ConfirmedSubmission {
             totalPrice: number 
         ): SubmissionData {
         return {
+            id: 0,
             userName: formData.userName,
             userEmail: formData.userEmail,
             userPhone: formData.userTelephone,
