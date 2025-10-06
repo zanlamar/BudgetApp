@@ -1,10 +1,10 @@
-<div class="container-fluid px-3 d-flex mt-2">
+<div class="container-fluid px-2 d-flex mt-2">
     <div class="column step1 flex-fill">
 
     <div class="services-header-container">
         <div class="services-header d-flex align-items-center justify-content-between">
 
-            <h5>Our services</h5>
+            <h3>Our services</h3>
             <app-final-price
                 [totalPrice]="totalPrice()">
             </app-final-price>
@@ -37,25 +37,19 @@
                 (checkboxChanged)="onSeoSelectionChange($event)">
             </app-service-card>
 
-            <div class="orders-container">
-                <div class="row">
-                    @for (order of allOrders(); track $index) {
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <app-final-card 
-                                [orderSummary]="order">
-                            </app-final-card>
-                        </div>
-                    }
-                </div>
+            <div class="mt-5 orders-grid">
+                @for (order of allOrders(); track $index) {
+                    <app-final-card 
+                        [orderSummary]="order">
+                    </app-final-card>
+                }
             </div>
         </div>
     </div>
 
     
-
-    <div class="column step3">
+    <div class="contact-header-container column mt-2">
         <div class="contact-header-container">
-            <!-- <h2>Get in touch</h2> -->
             <app-contact-form
                 (formSubmitted)="onFormSubmitted($event)">
             </app-contact-form>
