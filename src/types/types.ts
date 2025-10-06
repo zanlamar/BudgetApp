@@ -5,6 +5,7 @@ export interface ContactFormData {
 }
 
 export interface SubmissionData {
+    id: number;
     userName: string;
     userEmail: string;
     userPhone: string;

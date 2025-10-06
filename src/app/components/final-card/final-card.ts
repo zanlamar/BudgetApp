@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SubmissionData } from '../../../types/types';
 
 
-
 @Component({
   selector: 'app-final-card',
   imports: [CommonModule],
@@ -13,6 +12,6 @@ import { SubmissionData } from '../../../types/types';
 })
 export class FinalCard {
 
-  @Input() orderSummary: SubmissionData | null = null;
+  @Input() order: SubmissionData | null = null;
 
 }

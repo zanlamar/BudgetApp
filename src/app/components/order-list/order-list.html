@@ -1,0 +1,29 @@
+<div class="w-100 d-flex justify-content-end gap-3 mb-3">
+
+    <button class="filter-button btn btn-outline-primary">Per price</button>
+
+    <mat-button-toggle-group name="serviceMenu" 
+        aria-label="Per service"
+        [value]="selectedFilter()" 
+        (change)="selectedFilter.set($event.value)">
+
+        <mat-button-toggle value="all">All Orders</mat-button-toggle>
+        <mat-button-toggle value="web">WEB</mat-button-toggle>
+        <mat-button-toggle value="ads">ADS</mat-button-toggle>
+        <mat-button-toggle value="seo">SEO</mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+    <button class="filter-button btn btn-outline-primary">Per name</button>
+
+</div>
+
+<div class="gap-3 mb-3">
+    
+    <div class="cards-container">
+            @for (order of filteredOrders(); track order.id) {
+            <app-final-card [order]="order"></app-final-card>
+            }
+    </div>
+
+</div>
