@@ -1,13 +1,16 @@
-
 .summary-card {
   margin: 0;
   width: 100%;
-  background: #fff;
-  border: 2px solid transparent;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(82, 63, 105, 0.1);
+  box-shadow: 0 0 10px var(--shadow);
   padding: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  
+  // &:hover {
+  //   border-color: var(--accent-pink); // Rosa en hover
+  // }
 }
 
 .summary-header {
@@ -20,7 +23,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #edf1fc;
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
@@ -29,15 +31,18 @@
 }
 
 .summary-label {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   line-height: 1;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .summary-amount {
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
+  color: var(--text-primary);
 }
 
 .summary-user {
@@ -47,13 +52,14 @@
 }
 
 .user-name {
-  color: #3c4142;
+  color: var(--text-secondary);
   font-size: 14px;
+  font-weight: 600;
 }
 
 .user-email,
 .user-phone {
-  color: #b1bac5;
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
@@ -63,18 +69,23 @@
 
 .summary-services h6 {
   font-size: 14px;
-  color: #3c4142;
+  color: var(--accent-success);
   margin-bottom: 0.25rem;
+  font-weight: 600;
 }
 
 .summary-services ul {
   margin: 0;
   padding-left: 1rem;
   list-style-type: disc;
-  color: #727686;
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
 .summary-services li {
   margin-bottom: 0.25rem;
+  
+  &::marker {
+    color: var(--accent-success); // Verde para los bullets
+  }
 }
