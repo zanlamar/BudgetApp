@@ -1,11 +1,11 @@
-<div class="w-100 d-flex justify-content-end gap-3 mb-3">
+<div class="d-flex justify-content-end gap-3 mb-3">
 
     <mat-button-toggle-group name="serviceMenu" 
         aria-label="Per service"
-        [value]="selectedFilter()" 
-        (change)="selectedFilter.set($event.value)">
+        [value]="selectedServiceFilter()" 
+        (change)="selectedServiceFilter.set($event.value)">
 
-        <mat-button-toggle value="all">All Orders</mat-button-toggle>
+        <mat-button-toggle value="all">All</mat-button-toggle>
         <mat-button-toggle value="web">WEB</mat-button-toggle>
         <mat-button-toggle value="ads">ADS</mat-button-toggle>
         <mat-button-toggle value="seo">SEO</mat-button-toggle>
@@ -14,21 +14,21 @@
 
     <mat-button-toggle-group name="priceMenu" 
         aria-label="Order by price"
-        [value]="selectedFilter()" 
-        (change)="selectedPriceFilter.set($event.value)">
+        [value]="selectedPriceFilter()" 
+        (change)="onPriceFilterChange($event.value)">
 
-        <mat-button-toggle value="priciest">↑ Price </mat-button-toggle>
-        <mat-button-toggle value="cheapest">↓ Price</mat-button-toggle>
+        <mat-button-toggle value="priciest">↓ Price</mat-button-toggle>
+        <mat-button-toggle value="cheapest">↑ Price</mat-button-toggle>
 
     </mat-button-toggle-group>
 
-    <mat-button-toggle-group name="priceMenu" 
+    <mat-button-toggle-group name="nameMenu" 
         aria-label="Order by price"
-        [value]="selectedFilter()" 
-        (change)="selectedNameFilter.set($event.value)">
+        [value]="selectedNameFilter()" 
+        (change)="onNameFilterChange($event.value)">
 
-        <mat-button-toggle value="priciest">Name (A - Z) </mat-button-toggle>
-        <mat-button-toggle value="cheapest">Name (Z - A)</mat-button-toggle>
+        <mat-button-toggle value="A-Z">Name (A - Z) </mat-button-toggle>
+        <mat-button-toggle value="Z-A">Name (Z - A)</mat-button-toggle>
         
     </mat-button-toggle-group>
 
@@ -37,9 +37,9 @@
 <div class="gap-3 mb-3">
     
     <div class="cards-container">
-            @for (order of filteredOrders(); track order.id) {
-            <app-final-card [order]="order"></app-final-card>
-            }
+        @for (order of filteredOrders(); track order.id) {
+        <app-final-card [order]="order"></app-final-card>
+        }
     </div>
 
 </div>
