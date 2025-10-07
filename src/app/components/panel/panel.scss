@@ -2,10 +2,75 @@
     background-color: #1e2139;
 }
 
+// Hover para el icono de información
 .hover-primary {
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: var(--accent-tertiary) !important; // Cyan en hover
+  }
 }
 
-.hover-primary:hover {
-    color: var(--bs-primary) !important;
+// Estilos para los botones de cantidad
+.btn-outline-primary {
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+  
+  i {
+    font-weight: 900 !important; // Hace los iconos más gruesos
+    font-size: 1.1rem; // Un poco más grandes
+  }
+  
+  &:hover {
+    background-color: var(--accent-pink) !important; // Fondo rosa
+    border-color: var(--accent-pink) !important;
+    color: var(--text-primary) !important; // Blanco
+  }
+  
+  &:active,
+  &:focus {
+    background-color: var(--accent-pink) !important;
+    border-color: var(--accent-pink) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 45, 149, 0.25) !important;
+  }
+}
+
+// Estilos para el input de cantidad
+.form-control {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+
+}
+
+// Estilos para los modales
+.modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.modal-header {
+  border-bottom-color: var(--border-color) !important;
+  
+  .modal-title {
+    color: var(--text-primary) !important;
+  }
+  
+  .btn-close {
+    filter: invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.modal-body {
+  color: var(--text-secondary) !important;
 }
