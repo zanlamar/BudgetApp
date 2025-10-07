@@ -1,7 +1,5 @@
 <div class="w-100 d-flex justify-content-end gap-3 mb-3">
 
-    <button class="filter-button btn btn-outline-primary">Per price</button>
-
     <mat-button-toggle-group name="serviceMenu" 
         aria-label="Per service"
         [value]="selectedFilter()" 
@@ -14,7 +12,25 @@
 
     </mat-button-toggle-group>
 
-    <button class="filter-button btn btn-outline-primary">Per name</button>
+    <mat-button-toggle-group name="priceMenu" 
+        aria-label="Order by price"
+        [value]="selectedFilter()" 
+        (change)="selectedPriceFilter.set($event.value)">
+
+        <mat-button-toggle value="priciest">↑ Price </mat-button-toggle>
+        <mat-button-toggle value="cheapest">↓ Price</mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group name="priceMenu" 
+        aria-label="Order by price"
+        [value]="selectedFilter()" 
+        (change)="selectedNameFilter.set($event.value)">
+
+        <mat-button-toggle value="priciest">Name (A - Z) </mat-button-toggle>
+        <mat-button-toggle value="cheapest">Name (Z - A)</mat-button-toggle>
+        
+    </mat-button-toggle-group>
 
 </div>
 

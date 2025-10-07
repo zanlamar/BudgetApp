@@ -15,8 +15,7 @@ export class OrderList {
   ordersSignal = signal<SubmissionData[]>([]);
   private _orders: SubmissionData[] = [];
 
-  @Input()
-  get orders(): SubmissionData[] {
+  @Input() get orders(): SubmissionData[] {
     return this._orders;
   }
   set orders(value: SubmissionData[]) {
@@ -25,6 +24,9 @@ export class OrderList {
   }
 
   selectedFilter = signal<string>('all');
+  selectedPriceFilter = signal<string>('all');
+  selectedNameFilter = signal<string>('all');
+
 
   constructor() {
     effect(() => {
