@@ -1,0 +1,87 @@
+.summary-card {
+  margin: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--shadow);
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+}
+
+.summary-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.summary-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.summary-user {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.user-name {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-email,
+.user-phone {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.summary-services {
+  margin-top: 0.75rem;
+}
+
+.summary-services h6 {
+  font-size: 14px;
+  color: var(--accent-success);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.summary-services ul {
+  margin: 0;
+  padding-left: 1rem;
+  list-style-type: disc;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.summary-services li {
+  margin-bottom: 0.25rem;
+  
+  &::marker {
+    color: var(--accent-success); // Verde para los bullets
+  }
+}

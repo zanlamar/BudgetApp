@@ -1,0 +1,40 @@
+<div class="container mt-5 mb-5 d-flex justify-content-center text-center">
+    <div class="card px-2 py-2 mb-4">
+
+        <div class="card-body">
+            <h5 class="information">Contact us for more details</h5>
+
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <app-name-field
+                            [userNameCheck]="userNameControl">
+                        </app-name-field>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <app-email-field
+                            [emailCheck]="userEmailControl"
+                        ></app-email-field>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <app-telephone-field
+                            [phoneCheck]="userTelephoneControl"
+                        ></app-telephone-field>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                        [class]="contactForm.valid ? 'btn btn-success w-75' : 'btn btn-secondary w-75'" 
+                        [disabled]="!contactForm.valid">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

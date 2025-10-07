@@ -1,0 +1,11 @@
+.container {
+    background-color: #1e2139;
+}
+
+.hover-primary {
+    transition: color 0.3s ease;
+}
+
+.hover-primary:hover {
+    color: var(--bs-primary) !important;
+}

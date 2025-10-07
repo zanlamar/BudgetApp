@@ -1,0 +1,35 @@
+<div class="card" [class.card-selected]="isSelected">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-auto d-flex align-items-center">
+                <input type="checkbox"
+                    class="form-check-input me-2"
+                    id="serviceCheck"
+                    [checked]="isSelected"
+                    (change)="onCheckboxChange($event)">
+                <label class="form-check-label" for="serviceCheck">Add</label>
+            </div>
+
+            
+            <div class="col d-flex flex-column justify-content-center">
+                <h5 class="card-title">{{ service }}</h5>
+                <p class="card-text">{{ serviceDescription }}</p>
+            </div>
+            
+            <div class="col-auto d-flex align-items-center">
+                <h5 class="text-primary">{{ price }}€</h5>
+            </div>
+        </div>
+
+    </div>
+
+    @if (isSelected && service === 'Web') {
+        <app-panel
+            servicePageLabel="Number of pages"
+            serviceLanguageLabel="Number of languages"
+            (finalPageQuantity)="onPagesInputChange($event)"
+            (finalLanguageQuantity)="onLanguagesInputChange($event)">
+        </app-panel>
+    }
+
+</div>
