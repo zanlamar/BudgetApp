@@ -2,6 +2,7 @@ import { Component, Input, signal, computed, effect } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FinalCard } from '../final-card/final-card';
 import { SubmissionData } from '../../../types/types';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-order-list',
@@ -23,31 +24,43 @@ export class OrderList {
     this.ordersSignal.set([...this._orders]);
   }
 
-  selectedFilter = signal<string>('all');
-  selectedPriceFilter = signal<string>('all');
-  selectedNameFilter = signal<string>('all');
+  selectedServiceFilter = signal<string>('all');
+  selectedPriceFilter = signal<string>('priciest');
+  selectedNameFilter = signal<string>('A-Z');
 
 
   constructor() {
     effect(() => {
       const currentOrders = this.ordersSignal();
       if (currentOrders.length) {
-        this.selectedFilter.set('all');
+        this.selectedServiceFilter.set('all');
       }
     });
   }
 
- filteredOrders = computed(() => {
-  const filter = this.selectedFilter();
-  return this.ordersSignal().filter(order => {
-    switch (filter) {
-      case 'web': return !!order.services?.web;
-      case 'seo': return !!order.services?.seo;
-      case 'ads': return !!order.services?.ads;
-      case 'all':
-      default: 
-        return !!order.services?.web || !!order.services?.seo || !!order.services?.ads;
+filteredOrders = computed(() => {
+  const serviceFilter = this.selectedServiceFilter();
+  const priceFilter = this.selectedPriceFilter();
+  const nameFilter = this.selectedNameFilter();
+
+  const filteredOrders = this.ordersSignal().filter(order => {
+    switch (serviceFilter) {
+      case "web": return !!order.services?.web;
+      case "seo": return !!order.services?.seo;
+      case "ads": return !!order.services?.ads;
+      case "all": 
+        default: 
+          return !!order.services?.web || !!order.services?.seo || !!order.services?.ads;
     }
   });
+
+  const result = [...filteredOrders];
+
+  switch (priceFilter) {
+    case "priciest": return result.sort((a, b) => a.totalPrice - b.totalPrice);
+    case "cheapest": return result.sort((a, b) => b.totalPrice - a.totalPrice);
+    default: 
+      return filteredOrders;
+  }
 });
 }  
