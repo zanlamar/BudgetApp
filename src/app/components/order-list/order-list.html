@@ -15,17 +15,17 @@
     <mat-button-toggle-group name="priceMenu" 
         aria-label="Order by price"
         [value]="selectedPriceFilter()" 
-        (change)="selectedPriceFilter.set($event.value)">
+        (change)="onPriceFilterChange($event.value)">
 
-        <mat-button-toggle value="cheapest">↓ Price</mat-button-toggle>
-        <mat-button-toggle value="priciest">↑ Price</mat-button-toggle>
+        <mat-button-toggle value="priciest">↓ Price</mat-button-toggle>
+        <mat-button-toggle value="cheapest">↑ Price</mat-button-toggle>
 
     </mat-button-toggle-group>
 
     <mat-button-toggle-group name="nameMenu" 
         aria-label="Order by price"
         [value]="selectedNameFilter()" 
-        (change)="selectedNameFilter.set($event.value)">
+        (change)="onNameFilterChange($event.value)">
 
         <mat-button-toggle value="A-Z">Name (A - Z) </mat-button-toggle>
         <mat-button-toggle value="Z-A">Name (Z - A)</mat-button-toggle>
