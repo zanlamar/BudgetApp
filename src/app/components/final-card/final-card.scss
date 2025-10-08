@@ -84,3 +84,10 @@
     color: var(--accent-success); // Verde para los bullets
   }
 }
+
+
+@media (max-width: 992px) {
+  .summary-card {
+    width: 100%;
+  }
+}
