@@ -1,0 +1,38 @@
+::ng-deep {
+  mat-button-toggle-group {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  mat-button-toggle {
+    border: none !important;
+    
+    .mat-button-toggle-button {
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      border-right: 1px solid var(--border-color);
+    }
+    
+    &:last-child .mat-button-toggle-button {
+      border-right: none;
+    }
+    
+    // Hover effect - cyan
+    &:hover:not(.mat-button-toggle-checked) {
+      .mat-button-toggle-button {
+        color: var(--accent-tertiary);
+        border-color: var(--accent-tertiary);
+      }
+    }
+    
+    // Estado seleccionado - rosa
+    &.mat-button-toggle-checked {
+      .mat-button-toggle-button {
+        background-color: var(--bg-primary);
+        color: var(--accent-success);
+        border-color: var(--accent-success);
+      }
+    }
+  }
+}

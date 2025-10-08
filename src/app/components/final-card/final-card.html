@@ -1,0 +1,35 @@
+@if (order) {
+  <div class="summary-card row mb-2">
+    <div class="summary-header">
+      <div class="summary-total">
+        <span class="summary-label">TOTAL</span>
+        <span class="summary-amount">{{ order.totalPrice }} €</span>
+      </div>
+
+      <div class="summary-user">
+        <span class="user-name">{{order.userName}}</span>
+        <span class="user-email">{{order.userEmail}}</span>
+        <span class="user-phone">{{order.userPhone}}</span>
+      </div>
+    </div>
+
+    <div class="summary-services">
+      <ul>
+        @if (order.services.web) {
+          <li>
+            WEB: {{ order.services.web.pages }} Pages, 
+            {{ order.services.web.languages }} Languages
+          </li>
+        }
+
+        @if (order.services.ads) {
+          <li>ADS</li>
+        }
+
+        @if (order.services.seo) {
+          <li>SEO</li>
+        }
+      </ul>
+    </div>
+  </div>
+}

@@ -1,40 +1,53 @@
-# BudgetApp
+# ITA Sprint 6: BudgetApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+This project was built as part of **Sprint 6 at the IT Academy**, showcasing my progress in front-end development. It applies core concepts like **HTML, SASS, and Bootstrap 5**, along with **component-service interaction, reactive forms with custom validation, Signals, and parent-child communication.** The result is a **responsive, interactive web app** where users can select services, get an automatic budget estimate, submit validated requests, and view or sort them using dynamic filters.
 
-## Development server
+## Technologies Used
 
-To start a local development server, run:
+Angular 20.3.3
+TypeScript
+Angular Material
+SCSS & Bootstrap for styling
+Angular Signals for state management
+
+
+## Prerequisites
+
+Before running this project, make sure you have installed:
+- Node.js (v18 or higher)
+- npm (comes with Node.js)
+- Angular CLI (20.3.3)
+
+## Installation
+
+1. Install Angular CLI globally:
+```bash
+npm install -g @angular/cli
+```
+
+2. Clone the repository:
 
 ```bash
-ng serve
+git clone https://github.com/zanlamar/BudgetApp.git
+```
+
+3. Navigate to project directory:
+```bash
+cd BudgetApp
+```
+
+4. Install dependencies:
+```bash
+npm install
+```
+
+5. Run the project: 
+```bash
+npx ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
 ## Running unit tests
 
@@ -44,16 +57,22 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
+## Project Structure
 
-```bash
-ng e2e
+( PENDING )
+
+
+## Features 
+
+( PENDING )
+
+## Good practices
+
+Code Style: ESLint and Prettier for code formatting.
+For run linting: 
+```bash 
+npx lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
