@@ -1,9 +1,18 @@
 .example-container {
-  width: 100%;
+  width: 100%
   
   mat-form-field {
     display: block;
-    width: 75%;
-    margin: auto; 
+    width: 100%;
+    max-width: 500px;
+    margin: 0.75rem auto;
   }
+}
+
+.mat-form-field-outline {
+  border-width: 2px !important; // opcional, para uniformidad
+}
+
+.mat-form-field-underline {
+  display: none !important; // elimina la línea inferior extra
 }

@@ -6,7 +6,7 @@
 
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
                 <div class="row mb-2">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 center">
                         <app-name-field
                             [userNameCheck]="userNameControl">
                         </app-name-field>
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 center">
                         <app-email-field
                             [emailCheck]="userEmailControl"
                         ></app-email-field>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 center">
                         <app-telephone-field
                             [phoneCheck]="userTelephoneControl"
                         ></app-telephone-field>
