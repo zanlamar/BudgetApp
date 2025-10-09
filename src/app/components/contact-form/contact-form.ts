@@ -1,4 +1,4 @@
-import { Component, inject, Output, EventEmitter } from '@angular/core';
+import { Component, inject, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
@@ -17,6 +17,7 @@ import { ContactFormData } from '../../../types/types';
 
 export class ContactForm {
   private fb = inject(FormBuilder);
+  private cdr = inject(ChangeDetectorRef);
 
   contactForm: FormGroup;
 
@@ -60,10 +61,22 @@ export class ContactForm {
   onSubmit() {
     if (this.contactForm.valid) {
       this.formSubmitted.emit(this.contactForm.value);
-      this.contactForm.reset();
-      this.contactForm.markAsUntouched();
-      this.contactForm.markAsPristine();
+      this.resetFormCompletely();
     }
+  }
+
+  
+  private resetFormCompletely() {
+    this.contactForm.reset();
+    
+    this.contactForm.markAsUntouched();
+    this.contactForm.markAsPristine();
+    
+    Object.keys(this.contactForm.controls).forEach(key => {
+      this.contactForm.get(key)?.setErrors(null);
+    });
+    
+    this.cdr.detectChanges(); // Inyectar ChangeDetectorRef
   }
 
   
