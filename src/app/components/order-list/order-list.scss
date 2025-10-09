@@ -1,38 +1,77 @@
-::ng-deep {
-  mat-button-toggle-group {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
+.filters-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap; // permite que bajen si no caben
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex: 1 1 100%;
+}
+
+
+/* 🔹 Ajuste base de los grupos */
+::ng-deep mat-button-toggle-group {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+::ng-deep mat-button-toggle {
+  border: none !important;
+
+  .mat-button-toggle-button {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    border-right: 1px solid var(--border-color);
   }
-  
-  mat-button-toggle {
-    border: none !important;
-    
-    .mat-button-toggle-button {
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
-      border-right: 1px solid var(--border-color);
-    }
-    
+
+  &:last-child .mat-button-toggle-button {
+    border-right: none;
+  }
+
+  &:hover:not(.mat-button-toggle-checked) .mat-button-toggle-button {
+    color: var(--accent-tertiary);
+    border-color: var(--accent-tertiary);
+  }
+
+  &.mat-button-toggle-checked .mat-button-toggle-button {
+    background-color: var(--bg-primary);
+    color: var(--accent-success);
+    border-color: var(--accent-success);
+  }
+}
+
+/* 🔸 Responsive layout para móviles */
+@media (max-width: 992px) {
+  .filters-toolbar {
+    justify-content: center;  // centra todo
+    flex-direction: column;   // apila los grupos
+    align-items: center;
+  }
+
+  ::ng-deep mat-button-toggle-group {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap; // permite que los botones de cada grupo también bajen
+  }
+
+  ::ng-deep mat-button-toggle {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+}
+
+/* 🔸 Opcional: mejorar estética en pantallas pequeñas */
+@media (max-width: 576px) {
+  ::ng-deep mat-button-toggle {
+    flex: 1 1 100%;
+    border-bottom: 1px solid var(--border-color);
+
     &:last-child .mat-button-toggle-button {
       border-right: none;
-    }
-    
-    // Hover effect - cyan
-    &:hover:not(.mat-button-toggle-checked) {
-      .mat-button-toggle-button {
-        color: var(--accent-tertiary);
-        border-color: var(--accent-tertiary);
-      }
-    }
-    
-    // Estado seleccionado - rosa
-    &.mat-button-toggle-checked {
-      .mat-button-toggle-button {
-        background-color: var(--bg-primary);
-        color: var(--accent-success);
-        border-color: var(--accent-success);
-      }
+      border-bottom: none;
     }
   }
 }
