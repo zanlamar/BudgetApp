@@ -1,7 +1,6 @@
-import { Component, signal, computed, inject} from '@angular/core';
+import { Component, signal, inject} from '@angular/core';
 import { ServiceCard } from '../service-card/service-card';
 import { FinalPrice } from '../final-price/final-price';
-import { PRICES } from '../../model/pricing.constants';
 import { ServiceChangeEvent } from '../../model/service-event.model';
 import { BudgetCalculatorService} from '../../services/calculateBudget-service'
 import { ContactForm } from '../contact-form/contact-form';
@@ -26,64 +25,35 @@ export class Home {
   private orderService = inject(ConfirmedSubmission);
   private orderIdCounter = 0;
 
-  seoSelected = signal(false);
-  adsSelected = signal(false);
-  webSelected = signal(false);
-  
-  seoData = signal({ pages: 1, languages: 1 });
-  adsData = signal({ pages: 1, languages: 1 });
-  webData = signal({ pages: 1, languages: 1 });
-  
+  // Exponer señales del servicio (en lugar de crear nuevas)
+  seoSelected = this.budgetCalculator.seoSelected$;
+  adsSelected = this.budgetCalculator.adsSelected$;
+  webSelected = this.budgetCalculator.webSelected$;
+  totalPrice = this.budgetCalculator.totalPrice;
+
   orderSummary = signal<SubmissionData | null>(null);
+  
   allOrders = signal<SubmissionData[]>([]);
 
-
-  totalPrice = computed(() => {
-    let total = 0;
-
-    if (this.seoSelected()) {
-      const data = this.seoData();
-      total += this.budgetCalculator.calculateServicePrice(
-        PRICES.seoService, 
-        data.pages,
-        data.languages
-      );
-    }
-
-    if (this.adsSelected()) {
-      const data = this.adsData();
-       total += this.budgetCalculator.calculateServicePrice(
-        PRICES.adsService,
-        data.pages,
-        data.languages
-      );
-    }
-
-    if (this.webSelected()) {
-      const data = this.webData();
-      total += this.budgetCalculator.calculateServicePrice(
-        PRICES.webService,
-        data.pages,
-        data.languages
-      );
-    }
-    return total;
-  });
-
-
-  onSeoSelectionChange(eventData: ServiceChangeEvent) {
-    this.seoSelected.set(eventData.isSelected);
-    this.seoData.set({pages: eventData.pages, languages: eventData.languages});
+  onSeoSelectionChange(eventData: ServiceChangeEvent): void {
+    this.budgetCalculator.updateService('seo', eventData.isSelected, {
+      pages: eventData.pages,
+      languages: eventData.languages
+    });
   }
 
-  onAdsSelectionChange(eventData: ServiceChangeEvent) {
-    this.adsSelected.set(eventData.isSelected);
-    this.adsData.set({pages: eventData.pages, languages: eventData.languages});
+  onAdsSelectionChange(eventData: ServiceChangeEvent): void {
+    this.budgetCalculator.updateService('ads', eventData.isSelected, {
+      pages: eventData.pages,
+      languages: eventData.languages
+    });
   }
 
-  onWebSelectionChange(eventData: ServiceChangeEvent) {
-    this.webSelected.set(eventData.isSelected);
-    this.webData.set({pages: eventData.pages, languages: eventData.languages});
+  onWebSelectionChange(eventData: ServiceChangeEvent): void {
+    this.budgetCalculator.updateService('web', eventData.isSelected, {
+      pages: eventData.pages,
+      languages: eventData.languages
+    });
   }
 
   onFormSubmitted(formData: ContactFormData) {
@@ -94,15 +64,11 @@ export class Home {
 
     const submission = this.orderService.createSubmission(
       formData,
-      {
-        web: this.webSelected() ? this.webData() : undefined,
-        ads: this.adsSelected(),
-        seo: this.seoSelected()
-      },
+      this.budgetCalculator.getSelectedServicesData(),
       this.totalPrice()
     );
 
-     this.orderIdCounter++;
+      this.orderIdCounter++;
       const submissionWithId = { 
         ...submission,
         id: this.orderIdCounter
