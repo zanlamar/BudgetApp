@@ -15,8 +15,7 @@ export class OrderList {
   ordersSignal = signal<SubmissionData[]>([]);
   private _orders: SubmissionData[] = [];
 
-  @Input()
-  get orders(): SubmissionData[] {
+  @Input() get orders(): SubmissionData[] {
     return this._orders;
   }
   set orders(value: SubmissionData[]) {
@@ -24,28 +23,58 @@ export class OrderList {
     this.ordersSignal.set([...this._orders]);
   }
 
-  selectedFilter = signal<string>('all');
+  selectedServiceFilter = signal<string>('all');
+  selectedPriceFilter = signal<string | null>(null);
+  selectedNameFilter = signal<string | null>(null);
+
+  onPriceFilterChange(value: string) {
+    this.selectedPriceFilter.set(value);
+    this.selectedNameFilter.set(null);
+  }
+
+  onNameFilterChange(value: string) {
+    this.selectedNameFilter.set(value);
+    this.selectedPriceFilter.set(null);
+  }
+
 
   constructor() {
     effect(() => {
       const currentOrders = this.ordersSignal();
       if (currentOrders.length) {
-        this.selectedFilter.set('all');
+        this.selectedServiceFilter.set('all');
       }
     });
   }
 
- filteredOrders = computed(() => {
-  const filter = this.selectedFilter();
-  return this.ordersSignal().filter(order => {
-    switch (filter) {
-      case 'web': return !!order.services?.web;
-      case 'seo': return !!order.services?.seo;
-      case 'ads': return !!order.services?.ads;
-      case 'all':
-      default: 
-        return !!order.services?.web || !!order.services?.seo || !!order.services?.ads;
+filteredOrders = computed(() => {
+  const serviceFilter = this.selectedServiceFilter();
+  const priceFilter = this.selectedPriceFilter();
+  const nameFilter = this.selectedNameFilter();
+
+  const result = this.ordersSignal().filter(order => {
+    switch (serviceFilter) {
+      case "web": return !!order.services?.web;
+      case "seo": return !!order.services?.seo;
+      case "ads": return !!order.services?.ads;
+      case "all": 
+        default: 
+          return !!order.services?.web || !!order.services?.seo || !!order.services?.ads;
     }
   });
+
+  switch (priceFilter) {
+    case "priciest": return result.sort((a, b) => b.totalPrice - a.totalPrice);
+    case "cheapest": return result.sort((a, b) => a.totalPrice - b.totalPrice);
+  }
+  
+
+  switch (nameFilter) {
+    case "A-Z": return result.sort((a, b) => a.userName.localeCompare(b.userName));
+    case "Z-A": return result.sort((a, b) => b.userName.localeCompare(a.userName));
+  }
+
+  return [...result];
+
 });
 }  

@@ -17,6 +17,12 @@
   line-height: 27px;
 }
 
+.center {
+  display: flex;
+  justify-content: center; // centra horizontalmente
+  align-items: center;     // opcional, centra verticalmente si hay altura fija
+}
+
 .confirm-button {
   width: 100%;
   margin-top: 16px;
@@ -47,7 +53,6 @@ button[type="submit"] {
     
     &:hover {
       background-color: var(--accent-success); // Púrpura en hover
-      transform: translateY(-2px);
     }
   }
 }

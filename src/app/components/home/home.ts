@@ -1,108 +1,75 @@
-import { Component, signal, computed, inject} from '@angular/core';
+import { Component, signal, inject} from '@angular/core';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { ServiceCard } from '../service-card/service-card';
 import { FinalPrice } from '../final-price/final-price';
-import { PRICES } from '../../model/pricing.constants';
-import { ServiceChangeEvent } from '../../model/service-event.model';
-import { BudgetCalculatorService} from '../../services/calculateBudget-service'
+
+import { ServiceState } from '../../services/serviceState-service';
+
 import { ContactForm } from '../contact-form/contact-form';
 
 import { ConfirmedSubmission } from '../../services/createOrder'; 
-import { SubmissionData, ContactFormData } from '../../../types/types';
+import { SubmissionData, ContactFormData, ServiceChangeEvent } from '../../../types/types';
 
 import { OrderList } from '../order-list/order-list';
 
 
-
 @Component({
   selector: 'app-home',
-  imports: [ServiceCard, FinalPrice, ContactForm, OrderList ],
+  imports: [ServiceCard, FinalPrice, ContactForm, OrderList, MatSnackBarModule ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   standalone: true
 })
 export class Home {
 
-  private budgetCalculator = inject(BudgetCalculatorService);
-  private orderService = inject(ConfirmedSubmission);
-  private orderIdCounter = 0;
+  // parte servicios
 
-  seoSelected = signal(false);
-  adsSelected = signal(false);
-  webSelected = signal(false);
-  
-  seoData = signal({ pages: 1, languages: 1 });
-  adsData = signal({ pages: 1, languages: 1 });
-  webData = signal({ pages: 1, languages: 1 });
+  serviceState = inject(ServiceState);
+  private orderService = inject(ConfirmedSubmission);
   
   orderSummary = signal<SubmissionData | null>(null);
   allOrders = signal<SubmissionData[]>([]);
+  private orderIdCounter = 0;
+
+  private snackBar = inject(MatSnackBar);
 
 
-  totalPrice = computed(() => {
-    let total = 0;
+  // checkboxes
 
-    if (this.seoSelected()) {
-      const data = this.seoData();
-      total += this.budgetCalculator.calculateServicePrice(
-        PRICES.seoService, 
-        data.pages,
-        data.languages
-      );
-    }
-
-    if (this.adsSelected()) {
-      const data = this.adsData();
-       total += this.budgetCalculator.calculateServicePrice(
-        PRICES.adsService,
-        data.pages,
-        data.languages
-      );
-    }
-
-    if (this.webSelected()) {
-      const data = this.webData();
-      total += this.budgetCalculator.calculateServicePrice(
-        PRICES.webService,
-        data.pages,
-        data.languages
-      );
-    }
-    return total;
-  });
-
-
-  onSeoSelectionChange(eventData: ServiceChangeEvent) {
-    this.seoSelected.set(eventData.isSelected);
-    this.seoData.set({pages: eventData.pages, languages: eventData.languages});
+  onServiceChange(service: 'seo' | 'ads' | 'web', event: ServiceChangeEvent): void {
+    this.serviceState.updateService(service, event.isSelected, {
+      pages: event.pages,
+      languages: event.languages
+    });
   }
 
-  onAdsSelectionChange(eventData: ServiceChangeEvent) {
-    this.adsSelected.set(eventData.isSelected);
-    this.adsData.set({pages: eventData.pages, languages: eventData.languages});
+  // parte snackbar
+
+  private showSnackBar(message: string, type: 'success' | 'error') {
+      this.snackBar.open(message, 'Close', {
+      duration: 3500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: type === 'success' ? ['snackbar-success'] : ['snackbar-error'],
+    });
   }
 
-  onWebSelectionChange(eventData: ServiceChangeEvent) {
-    this.webSelected.set(eventData.isSelected);
-    this.webData.set({pages: eventData.pages, languages: eventData.languages});
-  }
+  
+  // parte del form
 
-  onFormSubmitted(formData: ContactFormData) {
-    if (this.totalPrice() === 0) {
-      alert('Please select at least one service before submitting.');
+  onFormSubmitted(formData: ContactFormData):void {
+    if (!this.serviceState.hasSelectedServices()) {
+      this.showSnackBar('Please select at least one service before submitting.', 'error');
       return; 
     }
 
     const submission = this.orderService.createSubmission(
       formData,
-      {
-        web: this.webSelected() ? this.webData() : undefined,
-        ads: this.adsSelected(),
-        seo: this.seoSelected()
-      },
-      this.totalPrice()
+      this.serviceState.getSelectedServicesData(),
+      this.serviceState.totalPrice(),
     );
 
-     this.orderIdCounter++;
+      this.orderIdCounter++;
       const submissionWithId = { 
         ...submission,
         id: this.orderIdCounter
@@ -110,7 +77,11 @@ export class Home {
 
     this.allOrders.update(orders => [...orders, submissionWithId]);
     this.orderSummary.set(submissionWithId);
-    alert(`Thank you, ${submission.userName}! Your we will get in touch with you soon.`);
+    this.serviceState.resetBudget();
+    this.showSnackBar(`Thank you, ${submission.userName}! Your we will get in touch with you soon`, 'success');
   }
 }
+
+
+
 

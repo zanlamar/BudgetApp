@@ -1,5 +1,5 @@
 .column {
-  width: 35%;
+  width: 40%;
   text-align: start;
   box-sizing: border
 }
@@ -11,23 +11,26 @@ h3 {
 }
 
 .services-header-container {
-  width: 100%; // Cambiado de 60% a 100% para ocupar toda la columna
-  margin-top: 0;
-  margin-bottom: 0;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
+  background-color: var(--bg-primary); // Añade fondo para que tape lo que está debajo
+  width: 100%; // Cambiado de 60% a 100% para ocupar toda la columna
   padding-top: 0;
-  padding-bottom: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+
 }
 
+/// ESTE HAY QUE REPLICARLO PARA EL DE ORDERS CONFIRMED
 .services-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap; // Previene desbordes en mobile
   background-color: var(--bg-primary);
+
+  // z-index: 100; // Igualado al header principal
   padding-top: 1.5em;
   padding-bottom: 1.5em;
   padding-left: 2rem; // Añadido para centrar el contenido
@@ -36,25 +39,82 @@ h3 {
   margin: 0 auto; // Centra el contenido
 }
 
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 15rem; // ESTE ES EL QUE ALINEA ORDERS Y DONDE EMPIEZAN LAS CARDS
+  padding-right: 2rem; // Añadido para centrar el contenido
+
+}
+
+.orders-section {
+  padding: 1rem;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 15rem; // ESTE ES EL QUE ALINEA ORDERS Y DONDE EMPIEZAN LAS CARDS
+  padding-right: 2rem; // Añadido para centrar el contenido
+  margin: 0 auto; // Centra el contenido
+}
+
 .contact-header-container {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .orders-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  padding-bottom: 1.5rem;
   width: 100%;
-  
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+}
+
+.all-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// --- RESPONSIVE ---
+@media (max-width: 992px) {
+  .services-header {
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
   }
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+
+  .services-header-container,
+  .contact-header-container {
+    position: static;
+  }
+
+  .services-list {
+  width: 100%;
+  display: flex;
+  gap: 0.2rem;
+  padding-left: 0; 
+  padding-right: 0;
+    
+  }
+
+}
+
+@media (max-width: 576px) {
+  .services-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .orders-section {
+    padding: 0.75rem;
+    justify-content: center;
+    flex-direction: column;
+    padding: auto;
+    margin: auto;
+  }
+
+  .services-list {
+    width: 100%
   }
 }
 

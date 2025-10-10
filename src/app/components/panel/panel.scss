@@ -1,11 +1,156 @@
-.container {
-    background-color: #1e2139;
+.panel-container {
+  background-color: #1e2139;
+  border-radius: 8px;
+  width: 100%;
 }
 
+/* --- Layout base --- */
+.container > .d-flex {
+  flex-wrap: wrap; // ✅ permite que baje en móviles
+}
+
+.label-fixed-width {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 180px; // ancho mínimo razonable en desktop
+}
+
+.input-group {
+  width: 130px;
+}
+
+/* --- Botones info --- */
 .hover-primary {
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--accent-success) !important; // cyan
+  }
+}
+/* --- Botones cantidad --- */
+.btn-outline-primary {
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+
+  i {
+    font-weight: 900 !important;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background-color: var(--accent-pink) !important;
+    border-color: var(--accent-pink) !important;
+    color: var(--text-primary) !important;
+  }
+
+  &:active,
+  &:focus {
+    background-color: var(--accent-pink) !important;
+    border-color: var(--accent-pink) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 45, 149, 0.25) !important;
+  }
 }
 
-.hover-primary:hover {
-    color: var(--bs-primary) !important;
+/* --- Inputs --- */
+.form-control {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+  text-align: center;
+}
+
+/* --- Modales --- */
+.modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-bottom-color: var(--border-color) !important;
+  .modal-title {
+    color: var(--text-primary) !important;
+  }
+  .btn-close {
+    filter: invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.modal-body {
+  color: var(--text-secondary) !important;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 992px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .container > .d-flex {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .label-fixed-width {
+    min-width: unset;
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .input-group {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .text-light.d-flex {
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .panel-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .text-light.d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .label-fixed-width {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .btn-outline-primary i {
+    font-size: 1rem;
+  }
 }
