@@ -10,7 +10,7 @@ describe('BudgetCalculatorService', () => {
         service = TestBed.inject(BudgetCalculatorService);
     }); 
 
-   it('should calculate service price correctly', () => {
+    it('should calculate service price correctly', () => {
     const mockService: ServiceChangeEvent = {
       service: 'seo',
       isSelected: true,

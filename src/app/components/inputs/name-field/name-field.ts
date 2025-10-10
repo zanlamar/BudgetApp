@@ -26,7 +26,7 @@ export class NameField {
     } else if (this.userNameCheck.hasError('minlength')) {
       this.errorMessage.set('Name must be at least 2 characters');
     } else if (this.userNameCheck.hasError('pattern')) {
-      this.errorMessage.set('Only letters and spaces are allowed');
+      this.errorMessage.set('Not numbers allowed.');
     } else {
       this.errorMessage.set('');
     }
