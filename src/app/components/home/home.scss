@@ -76,6 +76,23 @@ h3 {
   flex-wrap: wrap;
 }
 
+.snackbar-success {
+  background-color: var(--bg-card);
+  color: var(--accent-success);
+  font-weight: 500;
+  border: 1px solid var(--accent-success);
+  box-shadow: 0 0 12px var(--accent-success);
+}
+
+.snackbar-error {
+  background-color: var(--bg-card);
+  color: var(--accent-pink);
+  font-weight: 500;
+  border: 1px solid var(--accent-pink);
+  box-shadow: 0 0 12px var(--accent-pink);
+}
+
+
 // --- RESPONSIVE ---
 @media (max-width: 992px) {
   .services-header {
@@ -93,10 +110,11 @@ h3 {
   width: 100%;
   display: flex;
   gap: 0.2rem;
-  padding-left: 0; // ESTE ES EL QUE ALINEA ORDERS Y DONDE EMPIEZAN LAS CARDS
+  padding-left: 0; 
   padding-right: 0;
     
   }
+
 }
 
 @media (max-width: 576px) {
