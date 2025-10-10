@@ -2,7 +2,9 @@ import { Component, signal, inject} from '@angular/core';
 import { ServiceCard } from '../service-card/service-card';
 import { FinalPrice } from '../final-price/final-price';
 import { ServiceChangeEvent } from '../../model/service-event.model';
-import { BudgetCalculatorService} from '../../services/calculateBudget-service'
+
+import { ServiceState } from '../../services/serviceState-service';
+
 import { ContactForm } from '../contact-form/contact-form';
 
 import { ConfirmedSubmission } from '../../services/createOrder'; 
@@ -21,36 +23,36 @@ import { OrderList } from '../order-list/order-list';
 })
 export class Home {
 
-  private budgetCalculator = inject(BudgetCalculatorService);
+  private serviceState = inject(ServiceState);
   private orderService = inject(ConfirmedSubmission);
   private orderIdCounter = 0;
 
   // Exponer señales del servicio (en lugar de crear nuevas)
-  seoSelected = this.budgetCalculator.seoSelected$;
-  adsSelected = this.budgetCalculator.adsSelected$;
-  webSelected = this.budgetCalculator.webSelected$;
-  totalPrice = this.budgetCalculator.totalPrice;
+  seoSelected = this.serviceState.seoSelected$;
+  adsSelected = this.serviceState.adsSelected$;
+  webSelected = this.serviceState.webSelected$;
+  totalPrice = this.serviceState.totalPrice;
 
   orderSummary = signal<SubmissionData | null>(null);
   
   allOrders = signal<SubmissionData[]>([]);
 
   onSeoSelectionChange(eventData: ServiceChangeEvent): void {
-    this.budgetCalculator.updateService('seo', eventData.isSelected, {
+    this.serviceState.updateService('seo', eventData.isSelected, {
       pages: eventData.pages,
       languages: eventData.languages
     });
   }
 
   onAdsSelectionChange(eventData: ServiceChangeEvent): void {
-    this.budgetCalculator.updateService('ads', eventData.isSelected, {
+    this.serviceState.updateService('ads', eventData.isSelected, {
       pages: eventData.pages,
       languages: eventData.languages
     });
   }
 
   onWebSelectionChange(eventData: ServiceChangeEvent): void {
-    this.budgetCalculator.updateService('web', eventData.isSelected, {
+    this.serviceState.updateService('web', eventData.isSelected, {
       pages: eventData.pages,
       languages: eventData.languages
     });
@@ -64,7 +66,7 @@ export class Home {
 
     const submission = this.orderService.createSubmission(
       formData,
-      this.budgetCalculator.getSelectedServicesData(),
+      this.serviceState.getSelectedServicesData(),
       this.totalPrice()
     );
 
@@ -76,6 +78,8 @@ export class Home {
 
     this.allOrders.update(orders => [...orders, submissionWithId]);
     this.orderSummary.set(submissionWithId);
+    this.serviceState.resetBudget();
+
     alert(`Thank you, ${submission.userName}! Your we will get in touch with you soon.`);
   }
 }
