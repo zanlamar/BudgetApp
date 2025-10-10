@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SubmissionData, ContactFormData } from '../../types/types';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class ConfirmedSubmission {

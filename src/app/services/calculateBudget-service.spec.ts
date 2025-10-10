@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { BudgetCalculatorService } from './calculateBudget-service';
+
 describe('BudgetCalculatorService', () => {
 
   it('should calculate base price correctly with 1 page and 1 language', () => {
