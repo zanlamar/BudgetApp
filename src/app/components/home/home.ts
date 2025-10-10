@@ -34,7 +34,6 @@ export class Home {
   private snackBar = inject(MatSnackBar);
 
 
-
   // checkboxes
 
   onServiceChange(service: 'seo' | 'ads' | 'web', event: ServiceChangeEvent): void {
@@ -81,7 +80,6 @@ export class Home {
     this.serviceState.resetBudget();
     this.showSnackBar(`Thank you, ${submission.userName}! Your we will get in touch with you soon`, 'success');
   }
-  
 }
 
 

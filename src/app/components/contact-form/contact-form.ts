@@ -6,10 +6,12 @@ import { NameField } from '../inputs/name-field/name-field';
 import { TelephoneField } from "../inputs/telephone-field/telephone-field";
 import { EmailField } from '../inputs/email-field/email-field';
 import { ContactFormData } from '../../../types/types';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, NameField, TelephoneField, EmailField],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, NameField, TelephoneField, EmailField, MatSnackBarModule],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
@@ -18,6 +20,7 @@ import { ContactFormData } from '../../../types/types';
 export class ContactForm {
   private fb = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
+  private snackBar = inject(MatSnackBar); 
 
   contactForm: FormGroup;
 
@@ -49,7 +52,7 @@ export class ContactForm {
   }
 
   get userEmailControl(): FormControl {
-   return this.contactForm.get('userEmail') as FormControl;
+    return this.contactForm.get('userEmail') as FormControl;
   }
 
   get userTelephoneControl(): FormControl {
@@ -59,13 +62,17 @@ export class ContactForm {
   @Output() formSubmitted = new EventEmitter<ContactFormData>();
 
   onSubmit() {
+    if (!this.contactForm.valid) {
+      this.snackBar.open('Please fill all required fields', 'Close', { duration: 3500 });
+      return;
+    }
+
     if (this.contactForm.valid) {
       this.formSubmitted.emit(this.contactForm.value);
       this.resetFormCompletely();
     }
   }
 
-  
   private resetFormCompletely() {
     this.contactForm.reset();
     
@@ -78,6 +85,5 @@ export class ContactForm {
     
     this.cdr.detectChanges(); // Inyectar ChangeDetectorRef
   }
-
   
 }
