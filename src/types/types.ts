@@ -1,12 +1,19 @@
-export interface ContactFormData {
-  userName: string;
-  userEmail: string;
-  userTelephone: string;
-}
 
 export interface ServiceData {
   pages: number;
   languages: number;
+}
+
+export interface ServiceChangeEvent {
+  isSelected: boolean;
+  pages: number;
+  languages: number;
+}
+
+export interface ContactFormData {
+  userName: string;
+  userEmail: string;
+  userTelephone: string;
 }
 
 export interface SubmissionData {

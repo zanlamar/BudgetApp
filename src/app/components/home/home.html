@@ -6,33 +6,33 @@
       <div class="services-header-container">
         <div class="services-header d-flex align-items-center justify-content-between flex-wrap">
           <h3>Our services</h3>
-            <app-final-price [totalPrice]="totalPrice()"></app-final-price>
+            <app-final-price [totalPrice]="serviceState.totalPrice()"></app-final-price>
         </div>
       </div>
 
       <div class="services-list mt-3">
         <app-service-card
-          service="Web"
+          service="web"
           serviceDescription="Responsive website development."
           price="500"
-          [isSelected]="webSelected()"
-          (checkboxChanged)="onWebSelectionChange($event)">
+          [isSelected]="serviceState.webSelected()"
+          (checkboxChanged)="onServiceChange('web', $event)">
         </app-service-card>
 
         <app-service-card
-          service="Ads"
+          service="ads"
           serviceDescription="Tailored ads campaign."
           price="400"
-          [isSelected]="adsSelected()"
-          (checkboxChanged)="onAdsSelectionChange($event)">
+          [isSelected]="serviceState.adsSelected()"
+          (checkboxChanged)="onServiceChange('ads', $event)">
         </app-service-card>
 
         <app-service-card
-          service="SEO"
+          service="seo"
           serviceDescription="Complete professional SEO audit."
           price="300"
-          [isSelected]="seoSelected()"
-          (checkboxChanged)="onSeoSelectionChange($event)">
+          [isSelected]="serviceState.seoSelected()"
+          (checkboxChanged)="onServiceChange('seo', $event)">
         </app-service-card>
       </div>
 

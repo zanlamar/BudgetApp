@@ -1,73 +1,73 @@
 import { Component, signal, inject} from '@angular/core';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { ServiceCard } from '../service-card/service-card';
 import { FinalPrice } from '../final-price/final-price';
-import { ServiceChangeEvent } from '../../model/service-event.model';
 
 import { ServiceState } from '../../services/serviceState-service';
 
 import { ContactForm } from '../contact-form/contact-form';
 
 import { ConfirmedSubmission } from '../../services/createOrder'; 
-import { SubmissionData, ContactFormData } from '../../../types/types';
+import { SubmissionData, ContactFormData, ServiceChangeEvent } from '../../../types/types';
 
 import { OrderList } from '../order-list/order-list';
 
 
-
 @Component({
   selector: 'app-home',
-  imports: [ServiceCard, FinalPrice, ContactForm, OrderList ],
+  imports: [ServiceCard, FinalPrice, ContactForm, OrderList, MatSnackBarModule ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   standalone: true
 })
 export class Home {
 
-  private serviceState = inject(ServiceState);
+  // parte servicios
+
+  serviceState = inject(ServiceState);
   private orderService = inject(ConfirmedSubmission);
+  
+  orderSummary = signal<SubmissionData | null>(null);
+  allOrders = signal<SubmissionData[]>([]);
   private orderIdCounter = 0;
 
-  // Exponer señales del servicio (en lugar de crear nuevas)
-  seoSelected = this.serviceState.seoSelected$;
-  adsSelected = this.serviceState.adsSelected$;
-  webSelected = this.serviceState.webSelected$;
-  totalPrice = this.serviceState.totalPrice;
+  private snackBar = inject(MatSnackBar);
 
-  orderSummary = signal<SubmissionData | null>(null);
+
+
+  // checkboxes
+
+  onServiceChange(service: 'seo' | 'ads' | 'web', event: ServiceChangeEvent): void {
+    this.serviceState.updateService(service, event.isSelected, {
+      pages: event.pages,
+      languages: event.languages
+    });
+  }
+
+  // parte snackbar
+
+  private showSnackBar(message: string, type: 'success' | 'error') {
+      this.snackBar.open(message, 'Close', {
+      duration: 3500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: type === 'success' ? ['snackbar-success'] : ['snackbar-error'],
+    });
+  }
+
   
-  allOrders = signal<SubmissionData[]>([]);
+  // parte del form
 
-  onSeoSelectionChange(eventData: ServiceChangeEvent): void {
-    this.serviceState.updateService('seo', eventData.isSelected, {
-      pages: eventData.pages,
-      languages: eventData.languages
-    });
-  }
-
-  onAdsSelectionChange(eventData: ServiceChangeEvent): void {
-    this.serviceState.updateService('ads', eventData.isSelected, {
-      pages: eventData.pages,
-      languages: eventData.languages
-    });
-  }
-
-  onWebSelectionChange(eventData: ServiceChangeEvent): void {
-    this.serviceState.updateService('web', eventData.isSelected, {
-      pages: eventData.pages,
-      languages: eventData.languages
-    });
-  }
-
-  onFormSubmitted(formData: ContactFormData) {
-    if (this.totalPrice() === 0) {
-      alert('Please select at least one service before submitting.');
+  onFormSubmitted(formData: ContactFormData):void {
+    if (!this.serviceState.hasSelectedServices()) {
+      this.showSnackBar('Please select at least one service before submitting.', 'error');
       return; 
     }
 
     const submission = this.orderService.createSubmission(
       formData,
       this.serviceState.getSelectedServicesData(),
-      this.totalPrice()
+      this.serviceState.totalPrice(),
     );
 
       this.orderIdCounter++;
@@ -79,8 +79,11 @@ export class Home {
     this.allOrders.update(orders => [...orders, submissionWithId]);
     this.orderSummary.set(submissionWithId);
     this.serviceState.resetBudget();
-
-    alert(`Thank you, ${submission.userName}! Your we will get in touch with you soon.`);
+    this.showSnackBar(`Thank you, ${submission.userName}! Your we will get in touch with you soon`, 'success');
   }
+  
 }
+
+
+
 
