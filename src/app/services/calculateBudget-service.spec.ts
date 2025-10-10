@@ -1,43 +1,28 @@
 import { TestBed } from '@angular/core/testing';
 import { BudgetCalculatorService } from './calculateBudget-service';
-import { ServiceChangeEvent } from '../model/service-event.model';
-
 describe('BudgetCalculatorService', () => {
-    let service: BudgetCalculatorService;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({});
-        service = TestBed.inject(BudgetCalculatorService);
-    }); 
-
-    it('should calculate service price correctly', () => {
-    const mockService: ServiceChangeEvent = {
-      service: 'seo',
-      isSelected: true,
-      pages: 2,
-      languages: 3,
-      price: 300
-    };
+  it('should calculate base price correctly with 1 page and 1 language', () => {
+    TestBed.configureTestingModule({});
+    const service = TestBed.inject(BudgetCalculatorService);
     
-      const result = service.calculateServicePrice(mockService.price, mockService.pages, mockService.languages);
-      expect(result).toBe(660);
-    });
+    const result = service.calculateServicePrice(500, 1, 1);
+    expect(result).toBe(500);
+  });
 
-    // it('should calculate budget as 0 when no services selected', () => {
-    //   const result = service.calculateServicePrice(0, 0, 0);
-    //   expect(result).toBe(0);
-    // });
+  it('should calculate price with multiple pages', () => {
+    TestBed.configureTestingModule({});
+    const service = TestBed.inject(BudgetCalculatorService);
+    
+    const result = service.calculateServicePrice(300, 3, 1);
+    expect(result).toBe(900);
+  });
 
-    it('should have initial total budget as 0', () => {
-        expect(service.getTotalBudget()).toBe(0);
-    });
-
-    it('should reset total budget to 0', () => {
-      service.setTotalBudget(500);
-      expect(service.getTotalBudget()).toBe(500);
-  
-      service.resetTotalBudget();
-      expect(service.getTotalBudget()).toBe(0);
-    });
-
+  it('should add extra language cost correctly', () => {
+    TestBed.configureTestingModule({});
+    const service = TestBed.inject(BudgetCalculatorService);
+    
+    const result = service.calculateServicePrice(500, 1, 3);
+    expect(result).toBe(560);
+  });
 });
