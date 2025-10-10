@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Panel } from '../panel/panel';
-import { ServiceChangeEvent } from '../../model/service-event.model'
+import { ServiceChangeEventFull } from '../../../types/types';
 
 @Component({
   selector: 'app-service-card',
@@ -19,7 +19,7 @@ export class ServiceCard {
   @Input() price = '';
   @Input() isSelected = false;
 
-  @Output() checkboxChanged = new EventEmitter<ServiceChangeEvent>();
+  @Output() checkboxChanged = new EventEmitter<ServiceChangeEventFull>();
 
   onCheckboxChange(event: Event) {
     const isSelected = (event.target as HTMLInputElement).checked;

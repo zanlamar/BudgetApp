@@ -10,6 +10,14 @@ export interface ServiceChangeEvent {
   languages: number;
 }
 
+export interface ServiceChangeEventFull {
+  isSelected: boolean;
+  price: number;
+  service: string;
+  pages: number;
+  languages: number;
+}
+
 export interface ContactFormData {
   userName: string;
   userEmail: string;
