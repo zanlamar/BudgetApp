@@ -46,21 +46,19 @@
     </div>
 
         <div class="input-group" style="width: 130px">
-          <button type="button" 
+            <button type="button" 
                 class="btn btn-outline-primary quantity-left-minus"
                 (click)="decreaseLanguageQuantity()">
-              <i class="bi bi-dash"></i>
-          </button>
-          
-          <input type="number text-center"
+                <i class="bi bi-dash"></i>
+            </button>
+        <input type="number text-center"
             class="form-control text-center"
             [value]="languageQuantity()" min="1" max="99"
             readonly>
-          
-          <button type="button" class="btn btn-outline-primary quantity-right-plus"
+            <button type="button" class="btn btn-outline-primary quantity-right-plus"
                 (click)="increaseLanguageQuantity()">
-              <i class="bi bi-plus"></i>
-          </button>
+                <i class="bi bi-plus"></i>
+            </button>
         </div>
     </div>
 </div>

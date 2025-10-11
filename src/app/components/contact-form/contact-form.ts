@@ -83,7 +83,7 @@ export class ContactForm {
       this.contactForm.get(key)?.setErrors(null);
     });
     
-    this.cdr.detectChanges(); // Inyectar ChangeDetectorRef
+    this.cdr.detectChanges();
   }
   
 }

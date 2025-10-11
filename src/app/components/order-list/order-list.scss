@@ -43,18 +43,17 @@
   }
 }
 
-/* 🔸 Responsive layout para móviles */
 @media (max-width: 992px) {
   .filters-toolbar {
-    justify-content: center;  // centra todo
-    flex-direction: column;   // apila los grupos
+    justify-content: center; 
+    flex-direction: column; 
     align-items: center;
   }
 
   ::ng-deep mat-button-toggle-group {
     width: 100%;
     justify-content: center;
-    flex-wrap: wrap; // permite que los botones de cada grupo también bajen
+    flex-wrap: wrap; 
   }
 
   ::ng-deep mat-button-toggle {
@@ -63,7 +62,6 @@
   }
 }
 
-/* 🔸 Opcional: mejorar estética en pantallas pequeñas */
 @media (max-width: 576px) {
   ::ng-deep mat-button-toggle {
     flex: 1 1 100%;
