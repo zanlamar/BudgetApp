@@ -6,12 +6,12 @@ import { NameField } from '../inputs/name-field/name-field';
 import { TelephoneField } from "../inputs/telephone-field/telephone-field";
 import { EmailField } from '../inputs/email-field/email-field';
 import { ContactFormData } from '../../../types/types';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, NameField, TelephoneField, EmailField, MatSnackBarModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, NameField, TelephoneField, EmailField],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
@@ -83,7 +83,7 @@ export class ContactForm {
       this.contactForm.get(key)?.setErrors(null);
     });
     
-    this.cdr.detectChanges(); // Inyectar ChangeDetectorRef
+    this.cdr.detectChanges();
   }
   
 }
