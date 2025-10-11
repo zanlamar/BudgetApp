@@ -17,7 +17,7 @@ This project was built as part of **Sprint 6 at the IT Academy**, showcasing my 
 - **Dark mode interface** — a sleek, modern look focused on readability and comfort.
 
 ## 🚀 Live Demo
-[Feeling curious? See the live demo](https://budget-6q4znhmvr-ana-lafs-projects.vercel.app)
+[Feeling curious? See the live demo](https://budget-app-mu-inky.vercel.app/)
 
 
 ## 📂 Project Structure
